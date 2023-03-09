@@ -1,0 +1,76 @@
+CSV File Description
+
+Files with a comma separated value (*.csv) extension are in plain text. They contain characters stored in a flat, nonproprietary format and can be opened by most computer programs. Each *.csv file contains a set of tabular data, with each record delineated by a line break and each field within a record delineated by a comma. A field that contains commas as part of its content has the additional delineation of a quote mark character before and after the field's contents. When a quote mark character is part of a field's content, it is included as two consecutive ""quote mark"" characters.
+
+Computers with Microsoft Excel installed open *.csv files in Excel by default, with the fields automatically arranged appropriately in columns. Other database programs also open *.csv files with the fields appropriately arranged.
+
+This zip archive holds 33 CSV files (i.e., "NSDUHsaeExcelTab##-2019.csv"), reflecting the 33 "Table #" tabs in the Excel file, and they contain the table title, table notes, column headings, and data.
+
+List of Tables
+
+Table 1. Illicit Drug Use in the Past Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 2. Marijuana Use in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 3. Marijuana Use in the Past Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 4. Perceptions of Great Risk from Smoking Marijuana Once a Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 5. First Use of Marijuana, by Age Group and State: Average Annual Initiation Estimates (Expressed as Percentages of the At-Risk Population) Based on 2018 and 2019 NSDUHs  
+
+Table 6. Illicit Drug Use Other Than Marijuana in the Past Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 7. Cocaine Use in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 8. Perceptions of Great Risk from Using Cocaine Once a Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 9. Heroin Use in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 10. Perceptions of Great Risk from Trying Heroin Once or Twice, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 11. Methamphetamine Use in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 12. Pain Reliever Misuse in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 13. Alcohol Use in the Past Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 14. Binge Alcohol Use in the Past Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 15. Perceptions of Great Risk from Having Five or More Drinks of an Alcoholic Beverage Once or Twice a Week, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 16. Alcohol Use and Binge Alcohol Use in the Past Month among Individuals Aged 12 to 20, by State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 17. Tobacco Product Use in the Past Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 18. Cigarette Use in the Past Month, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 19. Perceptions of Great Risk from Smoking One or More Packs of Cigarettes per Day, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 20. Illicit Drug Use Disorder in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 21. Pain Reliever Use Disorder in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 22. Alcohol Use Disorder in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 23. Substance Use Disorder in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 24. Needing But Not Receiving Treatment at a Specialty Facility for Illicit Drug Use in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 25. Needing But Not Receiving Treatment at a Specialty Facility for Alcohol Use in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 26. Needing But Not Receiving Treatment at a Specialty Facility for Substance Use in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 27. Any Mental Illness in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 28. Serious Mental Illness in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 29. Received Mental Health Services in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 30. Major Depressive Episode in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 31. Had Serious Thoughts of Suicide in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 32. Made Any Suicide Plans in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
+Table 33. Attempted Suicide in the Past Year, by Age Group and State: Percentages, Annual Averages Based on 2018 and 2019 NSDUHs  
+
