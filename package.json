@@ -1,5 +1,5 @@
 {
-  "name": "js_projects",
+  "name": "state_stats",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -12,15 +12,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/g-hor/JS_Project.git"
+    "url": "git+https://github.com/g-hor/state_stats.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/g-hor/JS_Project/issues"
+    "url": "https://github.com/g-hor/state_stats/issues"
   },
-  "homepage": "https://github.com/g-hor/JS_Project#readme",
+  "homepage": "https://github.com/g-hor/state_stats#readme",
   "dependencies": {
     "@babel/core": "^7.21.0",
     "@babel/preset-env": "^7.20.2",
