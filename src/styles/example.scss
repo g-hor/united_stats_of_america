@@ -1,6 +1,26 @@
-$color: purple; // Define a SCSS variable
+body {
+    background-color: rgb(207, 207, 207);
+}
 
-#main>h1 {
-    border: 4px solid $color; // Use the variable we defined
-    padding: 20px;
+h1 {
+    
+}
+
+.map-container {
+    position: relative;
+    display: inline-block;
+    width: 70%;
+    height: 100%;
+    padding-bottom: 100%;
+    vertical-align: top;
+    overflow: hidden;
+}
+
+.us-map {
+    background-color: white;
+    position: absolute;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
 }

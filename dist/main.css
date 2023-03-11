@@ -1,7 +1,25 @@
 /*!*************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \*************************************************************************************************************************************/
-#main > h1 {
-  border: 4px solid purple;
-  padding: 20px;
+body {
+  background-color: rgb(207, 207, 207);
+}
+
+.map-container {
+  position: relative;
+  display: inline-block;
+  width: 70%;
+  height: 100%;
+  padding-bottom: 100%;
+  vertical-align: top;
+  overflow: hidden;
+}
+
+.us-map {
+  background-color: white;
+  position: absolute;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
