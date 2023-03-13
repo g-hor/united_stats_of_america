@@ -1,3 +1,5 @@
+import { first } from "lodash";
+
 export function renderMap(url, colors) {
   fetch(`https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json`)
     .then(response => {
@@ -8,16 +10,12 @@ export function renderMap(url, colors) {
       }
     })
     .then(data => {
-
+      // console.log(data);
       // shortcut for calling later
-      let statesJsonArray = data.objects.states.geometries
+      let statesArray = data.objects.states.geometries;
 
       // set up empty hashmap with average data
-      statesJsonArray[56] = {};
-
-      // set up statistical values to associate colors later
-      // let min;
-      // let max;
+      statesArray[56] = {};
 
       // iterate over CSV file to SET state average data in a hashmap at the last index of 'data' array
       d3.csv(url, function(stats) {
@@ -31,7 +29,7 @@ export function renderMap(url, colors) {
           // console.log(stats);
           // if (avg < min) min = avg;
           // if (avg > max) max = avg;
-          statesJsonArray[56][stats["State"]] = avg;
+          statesArray[56][stats["State"]] = [avg];
         })
 
       // let range = max - min;
@@ -122,14 +120,43 @@ export function renderMap(url, colors) {
       .attr("d", path(topojson.mesh(data, data.objects.states, (a, b) => a !== b)));
       
       svg.call(zoom);
+
+      let min;
+      let max;
       
-      // console.log(statesJsonArray[1].properties["name"]);
-      // console.log(data);
+      function calculateStats(averagesHash) {
+        let values = Object.values(averagesHash);
+        values.forEach((val) => {
+          if (val[0] < min) min = val[0];
+          if (val[0] > max) max = val[0];
+        })
+      }
+
+      let range = max - min;
+      let firstQuartile = min + (range / 4);
+      let secondQuartile = min + (range / 2);
+      let thirdQuartile = min + (range * 3 / 4);
+
+      function findFillColor(averagesHash) {
+        // debugger
+        let values = Object.entries(averagesHash);
+        values.forEach((val) => {
+          if (val[0] >= min && val[0] <= firstQuartile) averagesHash[val[1]].concat(colors[0]);
+          if (val[0] >= firstQuartile && val[0] <= secondQuartile) averagesHash[val[1]].concat(colors[1]);
+          if (val[0] >= secondQuartile && val[0] <= thirdQuartile) averagesHash[val[1]].concat(colors[2]);
+          if (val[0] >= thirdQuartile && val[0] <= max) averagesHash[val[1]].concat(colors[3]);
+        });
+      }
+
+      // function fillStates(g, averagesHash) {
+      //   states.attr("fill", averagesHash => {
+      //     findFillColor(averagesHash);
+      //   })
+      // }
       
-      // statesJsonArray.slice(0, 55).forEach(function(state) {
-      //   console.log(state.properties["name"]);
-      // })
-  
+      setTimeout(calculateStats(statesArray[56]), 100);
+      setTimeout(findFillColor(statesArray[56]), 101);
+      // setTimeout(fillStates(states, statesArray[56]), 102);
       return svg.node();
     });
 }
