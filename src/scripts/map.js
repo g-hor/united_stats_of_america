@@ -19,6 +19,7 @@ export function renderMap(url, colors) {
 
       // iterate over CSV file to SET state average data in a hashmap at the last index of 'data' array
       d3.csv(url, function(stats) {
+        // debugger
         let avg = (
             (parseInt(stats["12-17 Estimate"]) + 
             parseInt(stats["18 or Older Estimate"]) + 
@@ -26,11 +27,11 @@ export function renderMap(url, colors) {
             parseInt(stats["26 or Older Estimate"])
             ) / 4
           );
-          // console.log(stats);
-          // if (avg < min) min = avg;
-          // if (avg > max) max = avg;
-          statesArray[56][stats["State"]] = [avg];
-        })
+        // console.log(stats);
+        // if (avg < min) min = avg;
+        // if (avg > max) max = avg;
+        statesArray[56][stats["State"]] = [avg];
+      });
 
       // let range = max - min;
       // let firstQuartile = min + (range / 4);
@@ -125,6 +126,7 @@ export function renderMap(url, colors) {
       let max;
       
       function calculateStats(averagesHash) {
+        // debugger
         let values = Object.values(averagesHash);
         values.forEach((val) => {
           if (val[0] < min) min = val[0];
@@ -153,6 +155,10 @@ export function renderMap(url, colors) {
       //     findFillColor(averagesHash);
       //   })
       // }
+
+      console.log(statesArray);
+      console.log(statesArray[56]);
+      console.log(statesArray[56]['Alabama']);
       
       setTimeout(calculateStats(statesArray[56]), 100);
       setTimeout(findFillColor(statesArray[56]), 101);
