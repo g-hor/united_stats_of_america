@@ -1,12 +1,10 @@
 // import Example from "./scripts/example.js"; // syntax to import our class file
 import { renderMap } from "./scripts/map.js";
+// import {} from "./data/sample.js";
+
+const DEPRESSION_COLORS = ["#1e90ff", "#1c86ee", "#1874cd", "#104e8b"];
 
 document.addEventListener("DOMContentLoaded", () => {
-  // console.log('wassup world');
-  // console.log('u ok buddy');
 
-  // const main = document.getElementById("main"); // grabs HTML element to instantiate new Class instance
-  // new Example(main); 
-  
-  renderMap();
+  renderMap("NSDUH_count/NSDUHsaeTotalsTab30-2019.csv", DEPRESSION_COLORS);
 })
