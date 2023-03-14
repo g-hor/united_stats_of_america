@@ -1,5 +1,12 @@
 export function fetchAndRender(url, colors) {
-  const percentages = ["9.75% or less", "Between 9.75% and 11%", "Between 11% and 12.25%", "Over 12.25%"]
+  const percentageText = [
+    "Below 90% of National Average",
+    "Between 90% and 95% of National Average",
+    "Between 95% and 100% of National Average",
+    "Between 100% and 105% of National Average",
+    "Between 105% and 110% of National Average",
+    "Over 110% of National Average"
+  ]
 
   let mapData;
   let csvData;
@@ -14,13 +21,19 @@ export function fetchAndRender(url, colors) {
         .then(data => {
           csvData = data;
           console.log(csvData);
-  
+          
           renderMap();
         })
     })
   
   function renderMap() {
-    // const percentages = ;
+    console.log(csvData[0]);
+
+    const nationalData = csvData[0]
+    const nationalAvg = ((parseFloat(nationalData["12-17 Estimate"]) +  
+    parseFloat(nationalData["18-25 Estimate"]) + 
+    parseFloat(nationalData["26 or Older Estimate"])
+    ) / 3)
 
     const width = 950;
     const height = 520;
@@ -53,7 +66,7 @@ export function fetchAndRender(url, colors) {
         let stateData = csvData.find((ele) => {
           return ele["State"] === stateName
         })
-        stateData ||= {"12-17 Estimate": 0, "18 or Older Estimate": 0, "18-25 Estimate": 0, "26 or Older Estimate": 0}
+        stateData ||= {"12-17 Estimate": 0, "18-25 Estimate": 0, "26 or Older Estimate": 0}
 
         let avg = (
           (parseFloat(stateData["12-17 Estimate"]) +  
@@ -62,14 +75,20 @@ export function fetchAndRender(url, colors) {
           ) / 3
         );
 
-        if (avg <= 9.75) {
-          return colors[0]
-        } else if (avg >= 9.75 && avg <= 11) {
-          return colors[1]
-        } else if (avg >= 11 && avg <= 12.25) {
-          return colors[2] 
+        let stateProportion = (avg/nationalAvg);
+
+        if (stateProportion <= 0.90) {
+          return colors[0];
+        } else if (stateProportion > 0.90 && stateProportion <= 0.95) {
+          return colors[1];
+        } else if (stateProportion > 0.95 && stateProportion <= 1.0) {
+          return colors[2];
+        } else if (stateProportion > 1.0 && stateProportion <= 1.05) {
+          return colors[3];
+        } else if (stateProportion > 1.05 && stateProportion <= 1.10) {
+          return colors[4];
         } else {
-          return colors[3]
+          return colors[5];
         }
       })
       .join('path')
@@ -106,7 +125,7 @@ export function fetchAndRender(url, colors) {
         .attr('x', '100')
         .attr('y', `${yAxis + 15}`)
         .attr('fill', 'black')
-        .text(`${percentages[idx]}`)
+        .text(`${percentageText[idx]}`)
 
       yAxis += 15;
     });

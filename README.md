@@ -30,7 +30,7 @@ In addition, this project will include:
 
 ## Implementation Timeline
 * Friday Afternoon & Weekend: Research D3.js and implement U.S. map with individual states
-* Monday: Refine CSV data and implement chloropeth feature
+* Monday: Clean/parse CSV data and implement chloropeth feature
 * Tuesday: Refine map, filter, and toggle styling
 * Wednesday: Create modal for user instructions and refine webpage
 * Thursday Morning: Finalize style and implement bonus charts
