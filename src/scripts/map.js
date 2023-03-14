@@ -2,7 +2,7 @@ export function fetchAndRender(url, colors) {
   const percentages = ["9.75% or less", "Between 9.75% and 11%", "Between 11% and 12.25%", "Over 12.25%"]
 
   let mapData;
-  let statData;
+  let csvData;
 
   
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json")
@@ -12,22 +12,24 @@ export function fetchAndRender(url, colors) {
   
       d3.csv(url)
         .then(data => {
-          statData = data;
-          // console.log(statData);
+          csvData = data;
+          console.log(csvData);
   
           renderMap();
         })
     })
   
   function renderMap() {
-    let width = 950;
-    let height = 520;
-    let path = d3.geoPath(d3.geoAlbersUsa());
-    let svg = d3
+    // const percentages = ;
+
+    const width = 950;
+    const height = 520;
+    const path = d3.geoPath(d3.geoAlbersUsa());
+    const svg = d3
       .select('.us-map')
       .attr('viewBox', [0, 0, width, height])
       .on("click", reset);
-    let g = svg.append('g');
+    const g = svg.append('g');
 
     // defines how much to zoom in (initialized here to allow access in later callbacks)
     const zoom = d3.zoom()
@@ -48,7 +50,7 @@ export function fetchAndRender(url, colors) {
       .attr('d', path)
       .attr('fill', (state) => {
         let stateName = state.properties.name;
-        let stateData = statData.find((ele) => {
+        let stateData = csvData.find((ele) => {
           return ele["State"] === stateName
         })
         stateData ||= {"12-17 Estimate": 0, "18 or Older Estimate": 0, "18-25 Estimate": 0, "26 or Older Estimate": 0}
