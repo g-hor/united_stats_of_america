@@ -1,168 +1,149 @@
-import { first } from "lodash";
+export function fetchAndRender(url, colors) {
+  const percentages = ["9.75% or less", "Between 9.75% and 11%", "Between 11% and 12.25%", "Over 12.25%"]
 
-export function renderMap(url, colors) {
-  fetch(`https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json`)
-    .then(response => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        throw new Error(response);
-      }
-    })
-    .then(data => {
-      // console.log(data);
-      // shortcut for calling later
-      let statesArray = data.objects.states.geometries;
+  let mapData;
+  let statData;
 
-      // set up empty hashmap with average data
-      statesArray[56] = {};
-
-      // iterate over CSV file to SET state average data in a hashmap at the last index of 'data' array
-      d3.csv(url, function(stats) {
-        // debugger
-        let avg = (
-            (parseInt(stats["12-17 Estimate"]) + 
-            parseInt(stats["18 or Older Estimate"]) + 
-            parseInt(stats["18-25 Estimate"]) + 
-            parseInt(stats["26 or Older Estimate"])
-            ) / 4
-          );
-        // console.log(stats);
-        // if (avg < min) min = avg;
-        // if (avg > max) max = avg;
-        statesArray[56][stats["State"]] = [avg];
-      });
-
-      // let range = max - min;
-      // let firstQuartile = min + (range / 4);
-      // let secondQuartile = min + (range / 2);
-      // let thirdQuartile = min + (range * 3 / 4);
-      // console.log(min);
-      // console.log(max);
-      // console.log(range);
-      // console.log(firstQuartile);
-      // console.log(secondQuartile);
-      // console.log(thirdQuartile);
-
-      const width = 955;
-      const height = 520;
-
-      // alters size of the map
-      const svg = d3
-        .select('.us-map')
-        .attr('viewBox', [0, 0, width, height])
-        .on("click", reset);
   
-      // translates latitude and longitude of a globe to points on a flat map
-      const projection = d3.geoAlbersUsa()
+  d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json")
+    .then(data => {
+      mapData = data;
+      // console.log(mapData);
+  
+      d3.csv(url)
+        .then(data => {
+          statData = data;
+          // console.log(statData);
+  
+          renderMap();
+        })
+    })
+  
+  function renderMap() {
+    let width = 950;
+    let height = 520;
+    let path = d3.geoPath(d3.geoAlbersUsa());
+    let svg = d3
+      .select('.us-map')
+      .attr('viewBox', [0, 0, width, height])
+      .on("click", reset);
+    let g = svg.append('g');
 
-      // takes projection and converts the series of map coordinates to draw a shape
-      const path = d3.geoPath(projection);
-      const g = svg.append('g');
-
-      // callback for click event
-      function zoomed(event) {
-        const {transform} = event;
-        g.attr("transform", transform);
-        g.attr("stroke-width", 1 / transform.k);
-      }
-      
-      // callback for click event
-      function reset() {
-        states.transition().style("fill", null);
-        svg.transition().duration(750).call(
-          zoom.transform,
-          d3.zoomIdentity,
-          d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
-        );
-      }
-      
-      // callback for click event
-      function clicked(event, d) {
-        const [[x0, y0], [x1, y1]] = path.bounds(d);
-        event.stopPropagation();
-        states.transition().style("fill", null);
-        // d3.select(this).transition().style("fill", "yellow");
-        svg.transition().duration(750).call(
-          zoom.transform,
-          d3.zoomIdentity
-            .translate(width / 2, height / 2)
-            .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
-            .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
-          d3.pointer(event, svg.node())
-        );
-      }
-
-      // specifies extent of the zoom
-      const zoom = d3.zoom()
+    // defines how much to zoom in (initialized here to allow access in later callbacks)
+    const zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on("zoom", zoomed);
 
-      // creates states' shapes/outlines
-      const states = g.append("g")
-      .attr("fill", "#444")
-      .attr("cursor", "pointer")
-      .selectAll("path")
-      // topojson.feature converts topojson data into geojson
-      // data.objects.states.features holds an array of coordinates
-      .data(topojson.feature(data, data.objects.states).features)
-      .join("path")
-        .on("click", clicked)
-        .attr("d", path);
-      
-      // adds title of state's name (displays upon hovering over state)
-      states.append("title")
-      .text(d => d.properties.name);
-      
-      g.append("path")
-      .attr("fill", "none")
-      .attr("stroke", "white")
-      .attr("stroke-linejoin", "round")
-      .attr("d", path(topojson.mesh(data, data.objects.states, (a, b) => a !== b)));
-      
-      svg.call(zoom);
 
-      let min;
-      let max;
-      
-      function calculateStats(averagesHash) {
-        // debugger
-        let values = Object.values(averagesHash);
-        values.forEach((val) => {
-          if (val[0] < min) min = val[0];
-          if (val[0] > max) max = val[0];
+    /* uses 'mapData' to create geometric shapes for states
+      applies fill color based on selected data
+      applies 'clicked' callback function to zoom in on selected state
+    */
+    const states = g.append('g')
+      .attr('cursor', 'pointer')
+      .selectAll('path')
+      .data(topojson.feature(mapData, mapData.objects.states).features)
+      .enter()
+      .append('path')
+      .attr('d', path)
+      .attr('fill', (state) => {
+        let stateName = state.properties.name;
+        let stateData = statData.find((ele) => {
+          return ele["State"] === stateName
         })
-      }
+        stateData ||= {"12-17 Estimate": 0, "18 or Older Estimate": 0, "18-25 Estimate": 0, "26 or Older Estimate": 0}
 
-      let range = max - min;
-      let firstQuartile = min + (range / 4);
-      let secondQuartile = min + (range / 2);
-      let thirdQuartile = min + (range * 3 / 4);
+        let avg = (
+          (parseFloat(stateData["12-17 Estimate"]) +  
+          parseFloat(stateData["18-25 Estimate"]) + 
+          parseFloat(stateData["26 or Older Estimate"])
+          ) / 3
+        );
 
-      function findFillColor(averagesHash) {
-        // debugger
-        let values = Object.entries(averagesHash);
-        values.forEach((val) => {
-          if (val[0] >= min && val[0] <= firstQuartile) averagesHash[val[1]].concat(colors[0]);
-          if (val[0] >= firstQuartile && val[0] <= secondQuartile) averagesHash[val[1]].concat(colors[1]);
-          if (val[0] >= secondQuartile && val[0] <= thirdQuartile) averagesHash[val[1]].concat(colors[2]);
-          if (val[0] >= thirdQuartile && val[0] <= max) averagesHash[val[1]].concat(colors[3]);
-        });
-      }
+        if (avg <= 9.75) {
+          return colors[0]
+        } else if (avg >= 9.75 && avg <= 11) {
+          return colors[1]
+        } else if (avg >= 11 && avg <= 12.25) {
+          return colors[2] 
+        } else {
+          return colors[3]
+        }
+      })
+      .join('path')
+      .on('click', clicked)
+      .attr('d', path);
 
-      // function fillStates(g, averagesHash) {
-      //   states.attr("fill", averagesHash => {
-      //     findFillColor(averagesHash);
-      //   })
-      // }
 
-      console.log(statesArray);
-      console.log(statesArray[56]);
-      console.log(statesArray[56]['Alabama']);
-      
-      setTimeout(calculateStats(statesArray[56]), 100);
-      setTimeout(findFillColor(statesArray[56]), 101);
-      // setTimeout(fillStates(states, statesArray[56]), 102);
-      return svg.node();
+    // add HTML title element to each state (displays upon hovering)
+    states.append('title').text(state => state.properties.name);
+
+
+    // adds white state borders
+    g.append('path')
+      .attr('fill', 'none')
+      .attr('stroke', 'white')
+      .attr('stroke-linejoin', 'round')
+      .attr('d', path(topojson.mesh(mapData, mapData.objects.states, (a, b) => a !== b)))
+
+
+    // create color legend
+    const legend = d3.select('.legend')
+    let yAxis = 0
+
+    colors.forEach(function(color, idx) {
+      let portion = legend.append('g').attr('class', 'portion')
+      portion.append('rect')
+        .attr('x', '10')
+        .attr('y', `${yAxis}`)
+        .attr('width', '40')
+        .attr('height', '15')
+        .attr('fill', `${color}`)
+
+      portion.append('text')
+        .attr('x', '100')
+        .attr('y', `${yAxis + 15}`)
+        .attr('fill', 'black')
+        .text(`${percentages[idx]}`)
+
+      yAxis += 15;
     });
+
+
+    // zoom in on state when clicked
+    function clicked(event, d) {
+      const [[x0, y0], [x1, y1]] = path.bounds(d);
+      event.stopPropagation();
+      states.transition().style("fill", null);
+      svg.transition().duration(750).call(
+        zoom.transform,
+        d3.zoomIdentity
+          .translate(width / 2, height / 2)
+          .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
+          .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
+        d3.pointer(event, svg.node())
+      );
+    }
+    
+    function zoomed(event) {
+      const {transform} = event;
+      g.attr("transform", transform);
+      g.attr("stroke-width", 1 / transform.k);
+    }
+
+
+    // resets view back to default sizing/position
+    function reset() {
+      states.transition().style("fill", null);
+      svg.transition().duration(750).call(
+        zoom.transform,
+        d3.zoomIdentity,
+        d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
+      );
+    }
+
+    // enables click-dragging the map around inside SVG element
+    svg.call(zoom);
+  }
+
 }

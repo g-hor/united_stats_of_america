@@ -6,20 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <script src="https://d3js.org/d3.v7.min.js" defer></script>
     <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
-    <!-- <script src="https://d3js.org/topojson.v1.min.js"></script> -->
     <script src="./dist/main.js" defer></script>
     <title>United Stat(e)s of America</title>
 </head>
 
 <body>
     <h1>United Stat(e)s of America</h1>
+    <button id="btn">Update</button>
 
-    <div class="map-container">
-        <svg class="us-map"></svg>
+    <div class="all-container">
+        <div class="hover-text">
+
+        </div>
+        <div class="map-container">
+            <svg class="us-map"></svg>
+        </div>
+        <div id="legend">
+            <svg class="legend">
+                
+            </svg>
+        </div>
     </div>
-    
 </body>
 
 </html>
