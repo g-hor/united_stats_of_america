@@ -3,13 +3,14 @@
 // import { calculate } from "./scripts/calculation.js";
 import { fetchAndRender } from "./scripts/map.js";
 
-const DEPRESSION_COLORS = ["#ccccff", "#99ccff", "#6699ff", "#3366ff", "#3333ff", "#000066"];
+const ANY_ILLNESS = ["#66ffff", "#99ff99", "#ffff99", "#ff9999", "#ff99ff", "#99ccff"]
+const DEPRESSION = ["#ccccff", "#99ccff", "#6699ff", "#3366ff", "#3333ff", "#000066"];
 
 document.addEventListener("DOMContentLoaded", () => {
 
-  fetchAndRender("NSDUH_percentages/table1.csv", DEPRESSION_COLORS);
+  fetchAndRender("NSDUH_count/table27.csv", ANY_ILLNESS);
   document.getElementById("btn").addEventListener("click", () => {
     document.querySelector(".us-map").innerHTML = "";
-    fetchAndRender("NSDUH_percentages/table32.csv", ["#f00", "#0f0", "#00f", "#000", "#fff", "#0ff"]);
+    fetchAndRender("NSDUH_percentages/table30.csv", DEPRESSION);
   });
 })

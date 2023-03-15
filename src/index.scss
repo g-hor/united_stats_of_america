@@ -1,2 +1,6 @@
 // need to import other css files bcus webpack only looks at INDEX
-@import "./styles/example.scss";
+@import "./styles/_reset.scss";
+@import "./styles/filter.scss";
+@import "./styles/layout.scss";
+@import "./styles/legend.scss";
+@import "./styles/map.scss";

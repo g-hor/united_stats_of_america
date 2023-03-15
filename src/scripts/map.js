@@ -20,20 +20,16 @@ export function fetchAndRender(url, colors) {
       d3.csv(url)
         .then(data => {
           csvData = data;
-          console.log(csvData);
-          
+          // console.log(csvData);
+          debugger
           renderMap();
         })
     })
   
   function renderMap() {
-    console.log(csvData[0]);
-
     const nationalData = csvData[0]
-    const nationalAvg = ((parseFloat(nationalData["12-17 Estimate"]) +  
-    parseFloat(nationalData["18-25 Estimate"]) + 
-    parseFloat(nationalData["26 or Older Estimate"])
-    ) / 3)
+    console.log(nationalData);
+    const nationalAvg = parseFloat(nationalData["18 or Older Estimate"])
 
     const width = 950;
     const height = 520;
@@ -66,26 +62,20 @@ export function fetchAndRender(url, colors) {
         let stateData = csvData.find((ele) => {
           return ele["State"] === stateName
         })
-        stateData ||= {"12-17 Estimate": 0, "18-25 Estimate": 0, "26 or Older Estimate": 0}
+        stateData ||= {"12-17 Estimate": "0", "18-25 Estimate": "0", "18 or Older Estimate": "0"}
 
-        let avg = (
-          (parseFloat(stateData["12-17 Estimate"]) +  
-          parseFloat(stateData["18-25 Estimate"]) + 
-          parseFloat(stateData["26 or Older Estimate"])
-          ) / 3
-        );
+        let stateAvg = parseFloat(stateData["18 or Older Estimate"]);
+        let difference = nationalAvg - stateAvg;
 
-        let stateProportion = (avg/nationalAvg);
-
-        if (stateProportion <= 0.90) {
+        if (difference <= -3) {
           return colors[0];
-        } else if (stateProportion > 0.90 && stateProportion <= 0.95) {
+        } else if (difference > -3 && difference <= -1.5) {
           return colors[1];
-        } else if (stateProportion > 0.95 && stateProportion <= 1.0) {
+        } else if (difference > -1.5 && difference <= 0) {
           return colors[2];
-        } else if (stateProportion > 1.0 && stateProportion <= 1.05) {
+        } else if (difference > 0 && difference <= 1.5) {
           return colors[3];
-        } else if (stateProportion > 1.05 && stateProportion <= 1.10) {
+        } else if (difference > 1.5 && difference <= 3) {
           return colors[4];
         } else {
           return colors[5];
@@ -161,6 +151,15 @@ export function fetchAndRender(url, colors) {
         d3.zoomIdentity,
         d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
       );
+    }
+
+    // removes commas from a stringified number
+    function parse(numString) {
+      if (numString.includes(',')) {
+        return parseInt(numString.replace(/,/g, ''));
+      } else {
+        return parseInt(numString);
+      }
     }
 
     // enables click-dragging the map around inside SVG element

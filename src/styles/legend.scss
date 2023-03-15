@@ -1,0 +1,15 @@
+.legend-container {
+  width: 100%;
+}
+
+.legend {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.portion {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
