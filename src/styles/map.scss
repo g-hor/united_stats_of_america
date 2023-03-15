@@ -6,7 +6,11 @@
 }
 
 .us-map {
-  border: 0.5px solid rgb(112, 112, 112);
+  border: 1px solid rgb(112, 112, 112);
   border-radius: 14px;
   width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
 }

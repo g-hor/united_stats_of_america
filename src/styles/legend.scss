@@ -1,15 +1,19 @@
-.legend-container {
-  width: 100%;
-}
-
 .legend {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+  width: 1%;
+  padding: 0.05px;
 }
 
-.portion {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+#legend-detail {
+  display: none;
+  position: absolute;
+  width: 600px;
+  height: 80px;
+  background-color: white;
+  z-index: 10;
+  opacity: 0.8;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 18px;
 }

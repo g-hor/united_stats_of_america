@@ -9,11 +9,19 @@ const SRS_ILLNESS = ["#F7D1CD", "#E8C2CA", "#D1B3C4", "#B392AC", "#735D78", "#4C
 
 document.addEventListener("DOMContentLoaded", () => {
 
+  // user instructions modal
+  const userModal = document.getElementById('user-modal')
+  const closeButton = document.querySelector('.close')
+  
+  closeButton.addEventListener('click', () => userModal.classList.add('hidden'));
+  window.addEventListener('click', function(event) {
+    if (event.target == userModal) {
+      userModal.classList.add('hidden');
+    }
+  })
+
+
   fetchAndRender("NSDUH_count/table27.csv", ANY_ILLNESS);
-  // document.getElementById("btn").addEventListener("click", () => {
-  //   document.querySelector(".us-map").innerHTML = "";
-  //   fetchAndRender("NSDUH_count/table30.csv", DEPRESSION);
-  // });
 
   document.getElementById("table27").addEventListener("click", () => {
     document.querySelector(".us-map").innerHTML = "";

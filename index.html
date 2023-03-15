@@ -5,22 +5,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" 
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./dist/main.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&family=Ubuntu:ital,wght@0,300;0,500;1,300&display=swap" rel="stylesheet">
     <script src="https://d3js.org/d3.v7.min.js" defer></script>
     <script src="https://unpkg.com/topojson@3.0.2/dist/topojson.min.js"></script>
     <script src="./dist/main.js" defer></script>
-    <title>United Stat(e)s of America</title>
+    <title>United Stats of America</title>
 </head>
 
 <body>
-    <h1>United Stat(e)s of America</h1>
+    <nav>
+        <h1>
+            United Stat<span id="title-e">e</span>s of America
+        </h1>
+        <div class="icons">
+            <a href="https://www.linkedin.com/in/garyhor65/">
+                <i class="fa-brands fa-linkedin fa-2x"></i>
+            </a>
+            <a href="https://github.com/g-hor/united_stats_of_america">
+                <i class="fa-brands fa-square-github fa-2x"></i>
+            </a>
+        </div>
+    </nav>
     <h2>Any Mental Illness in the Past Year</h2>
 
     <div class="all-container">
+
+        <div class="modal" id="user-modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <ul>
+                    <li>Welcome to the United Stat(e)s of America! This webpage's aim is to spread awareness about general mental health and substance abuse.</li>
+                    <li id="tw">**TW: Suicide, Substance Use</li>
+                </ul>
+            </div>
+        </div>
+
         <div class="map-container">
+            
+            <svg class="legend">
+
+            </svg>
 
             <svg class="us-map">
 
@@ -74,13 +105,9 @@
             </div>
 
         </div>
-
-        <div class="legend-container">
-            <svg class="legend">
-                
-            </svg>
-        </div>
     </div>
+    <div id="legend-detail"></div>
+
 </body>
 
 </html>

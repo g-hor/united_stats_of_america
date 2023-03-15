@@ -64,40 +64,23 @@ ul {
   list-style-type: none;
 }
 
-.portion {
-  font-size: 12px;
-}
-
-.legend-container {
-  display: flex;
-  width: 78%;
-}
-
-.legend {
-  width: 78%;
-}
-
-li {
-  border: 0.5px solid gray;
+li.selector {
+  border: 0.2px solid gray;
   padding: 8px;
   margin: 5px;
   border-radius: 14px;
   cursor: pointer;
 }
 
-li:active {
+li.selector:active {
   box-shadow: 2px 3px lightgray;
 }
 
-li:hover {
+li.selector:hover {
   transform: scale(1.05);
   background-color: rgb(96, 96, 96);
   color: white;
   outline: white solid 2px;
-}
-
-rect {
-  width: 100%;
 }
 
 body {
@@ -109,6 +92,12 @@ body {
   font-family: Ubuntu;
 }
 
+nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 h1 {
   font-size: 50px;
   font-weight: 900;
@@ -116,13 +105,27 @@ h1 {
   margin: 5px;
 }
 
+#title-e {
+  font-size: 30px;
+}
+
+.icons {
+  position: fixed;
+  right: 1%;
+  top: 0;
+}
+
 h2 {
   font-size: 24px;
-  color: black;
-  font-weight: bold;
+  color: rgb(0, 0, 0);
+  background-color: rgba(132, 132, 132, 0.396);
+  font-style: italic;
   margin: 5px;
   padding: 5px 10px;
-  border: 2px double gray;
+  border: 2px solid rgba(255, 255, 255, 0.649);
+  border-radius: 5px;
+  width: 70%;
+  text-align: center;
 }
 
 .all-container {
@@ -133,20 +136,29 @@ h2 {
   margin: 5px;
 }
 
-.legend-container {
-  width: 100%;
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
 }
 
 .legend {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
+  width: 1%;
+  padding: 0.05px;
 }
 
-.portion {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+#legend-detail {
+  display: none;
+  position: absolute;
+  width: 600px;
+  height: 80px;
+  background-color: white;
+  z-index: 10;
+  opacity: 0.8;
+  border-top-right-radius: 14px;
+  border-bottom-right-radius: 14px;
+  text-align: center;
+  line-height: 80px;
+  font-size: 18px;
 }
 
 .map-container {
@@ -156,7 +168,52 @@ h2 {
 }
 
 .us-map {
-  border: 0.5px solid rgb(112, 112, 112);
+  border: 1px solid rgb(112, 112, 112);
   border-radius: 14px;
   width: 100%;
+  position: relative;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.modal {
+  position: fixed;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #c8c9d4;
+  margin: 10%;
+  padding: 20px;
+  border: 1px solid rgb(169, 169, 169);
+  width: 70%;
+}
+
+.hidden {
+  display: none;
+}
+
+.close {
+  float: right;
+  color: rgb(0, 0, 0);
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: white;
+  text-decoration: none;
+}
+
+#tw {
+  font-size: 12px;
 }

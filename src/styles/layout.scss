@@ -7,6 +7,12 @@ body {
     font-family: Ubuntu;
 }
 
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 h1 {
     font-size: 50px;
     font-weight: 900;
@@ -14,13 +20,27 @@ h1 {
     margin: 5px;
 }
 
+#title-e {
+    font-size: 30px;
+}
+
+.icons {
+    position: fixed;
+    right: 1%;
+    top: 0;
+}
+
 h2 {
     font-size: 24px;
-    color: black;
-    font-weight: bold;
+    color: rgb(0, 0, 0);
+    background-color: rgba(132, 132, 132, 0.396);
+    font-style: italic;
     margin: 5px;
     padding: 5px 10px;
-    border: 2px double gray;
+    border: 2px solid rgba(255, 255, 255, 0.649);
+    border-radius: 5px;
+    width: 70%;
+    text-align: center;
 }
 
 .all-container {
@@ -32,3 +52,7 @@ h2 {
     margin: 5px;
 }
 
+a, a:hover, a:focus, a:active {
+    text-decoration: none;
+    color: inherit;
+}

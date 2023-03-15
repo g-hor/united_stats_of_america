@@ -60,11 +60,12 @@ export function fetchAndRender(url, colors) {
         let stateData = csvData.find((ele) => {
           return ele["State"] === stateName
         })
-        stateData ||= {"18 or Older Estimate": "0"}
 
-        const stateAvg = parse(stateData["18 or Older Estimate"]);
-        const standardDev = (calculateSD(d3.map(csvData.slice(6), d => parse(d['18 or Older Estimate']))));
         const nationalAvg = d3.mean(csvData.slice(6), ele => parse(ele["18 or Older Estimate"]))
+        const standardDev = (calculateSD(d3.map(csvData.slice(6), d => parse(d['18 or Older Estimate']))));
+
+        stateData ||= {"18 or Older Estimate": `${nationalAvg}`}
+        const stateAvg = parse(stateData["18 or Older Estimate"]);
 
         const minusTwoSD = nationalAvg - (2 * standardDev);
         const minusOneSD = nationalAvg - (1 * standardDev);
@@ -104,28 +105,55 @@ export function fetchAndRender(url, colors) {
 
 
     // create color legend
-    const legend = d3.select('.legend')
-    let yAxis = 0
+    const legend = d3.select('.legend');
+    let yAxis = 65;
 
+    // iterate through colors to create colored rectangle + associated text description
     colors.forEach(function(color, idx) {
-      let portion = legend.append('g').attr('class', 'portion')
-      portion.append('rect')
-        .attr('x', '14')
+      legend.append('rect')
+        .attr('x', '0')
         .attr('y', `${yAxis}`)
-        .attr('width', '40')
-        .attr('height', '15')
+        .attr('width', '20')
+        .attr('height', '80')
         .attr('fill', `${color}`)
+        .attr('id', `color-${idx}`)
+        .attr('idx', idx)
+        .attr('data-text', `${deviationText[idx]}`)
 
-      portion.append('text')
-        .attr('x', '60')
-        .attr('y', `${yAxis + 15}`)
-        .attr('fill', 'black')
+      d3.select(`#color-${idx}`)
+        .append('text')
+        .attr('x', '23')
+        .attr('y', `${yAxis}`)
+        .attr('width', '200')
+        .attr('height', '80')
         .text(`${deviationText[idx]}`)
 
-      yAxis += 15;
+      d3.select(`#color-${idx}`)
+        .on('mouseover', (e) => {
+          const el = e.target;
+          const detail = el.dataset.text;
+          const idx = Number(el.getAttribute('idx'));
+          const legendDetail = document.getElementById("legend-detail");
+          const offsetLeft = document.querySelector('.map-container').offsetLeft;
+          const offsetTop = document.querySelector('.map-container').offsetTop;
+          const legendWidth = document.querySelector('.legend').width.baseVal.value;
+          legendDetail.innerText = detail;
+          legendDetail.style.display = "block";
+          legendDetail.style.left = `${offsetLeft + legendWidth}px`;
+          legendDetail.style.top = `${offsetTop + 65 + (80 * idx)}px`;
+          legendDetail.style.backgroundColor = color;
+        })
+        .on('mouseout', () => {
+          const legendDetail = document.getElementById("legend-detail");
+          legendDetail.style.display = 'none';
+        });
+
+
+      yAxis += 80;
     });
 
 
+    
     // zoom in on state when clicked
     function clicked(event, d) {
       const [[x0, y0], [x1, y1]] = path.bounds(d);

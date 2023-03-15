@@ -7,39 +7,22 @@ ul {
   list-style-type: none;
 }
 
-.portion {
-  font-size: 12px;
-}
 
-.legend-container {
-  display: flex;
-  width: 78%;
-}
-
-.legend {
-  width: 78%;
-}
-
-li {
-  border: 0.5px solid gray;
+li.selector {
+  border: 0.2px solid gray;
   padding: 8px;
   margin: 5px;
   border-radius: 14px;
   cursor: pointer;
 }
 
-li:active {
+li.selector:active {
   box-shadow: 2px 3px lightgray;
 }
 
-li:hover {
+li.selector:hover {
   transform: scale(1.05);
   background-color: rgb(96, 96, 96);
   color: white;
   outline: white solid 2px;
-}
-
-rect {
-  width: 100%;
-  // height: 100%;
 }
