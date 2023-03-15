@@ -70,7 +70,8 @@ export function fetchAndRender(url, colors) {
         const minusOneSD = nationalAvg - (1 * standardDev);
         const plusOneSD = nationalAvg + (1 * standardDev);
         const plusTwoSD = nationalAvg + (2 * standardDev);
-
+        // debugger
+        
         if (stateAvg <= minusTwoSD) {
           return colors[0];
         } else if (stateAvg > minusTwoSD && stateAvg <= minusOneSD) {
@@ -109,7 +110,7 @@ export function fetchAndRender(url, colors) {
     colors.forEach(function(color, idx) {
       let portion = legend.append('g').attr('class', 'portion')
       portion.append('rect')
-        .attr('x', '10')
+        .attr('x', '14')
         .attr('y', `${yAxis}`)
         .attr('width', '40')
         .attr('height', '15')

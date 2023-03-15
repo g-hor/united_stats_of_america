@@ -1,4 +1,4 @@
-Order,State,12 or Older  Estimate,12 or Older  95% CI (Lower),12 or Older  95% CI (Upper),12-17 Estimate,12-17 95% CI (Lower),12-17 95% CI (Upper),18-25 Estimate,18-25 95% CI (Lower),18-25 95% CI (Upper),26 or Older  Estimate,26 or Older  95% CI (Lower),26 or Older  95% CI (Upper),18 or Older  Estimate,18 or Older  95% CI (Lower),18 or Older  95% CI (Upper)
+Order,State,12 or Older Estimate,12 or Older  95% CI (Lower),12 or Older  95% CI (Upper),12-17 Estimate,12-17 95% CI (Lower),12-17 95% CI (Upper),18-25 Estimate,18-25 95% CI (Lower),18-25 95% CI (Upper),26 or Older  Estimate,26 or Older  95% CI (Lower),26 or Older  95% CI (Upper),18 or Older Estimate,18 or Older  95% CI (Lower),18 or Older  95% CI (Upper)
 1,Total U.S.,"9,094","8,706","9,499",591,538,648,"2,056","1,940","2,178","6,447","6,092","6,822","8,503","8,119","8,905"
 2,Northeast,"1,499","1,370","1,641",84,73,97,364,327,405,"1,051",934,"1,183","1,415","1,288","1,554"
 3,Midwest,"1,896","1,762","2,039",125,110,141,445,408,485,"1,327","1,205","1,460","1,771","1,640","1,913"
