@@ -1,8 +1,24 @@
 .filter-container {
-  width: 100%;
+  width: 25%;
+  margin-left: 10px;
 }
 
 ul {
   list-style-type: none;
 }
 
+.portion {
+  font-size: 12px;
+}
+
+.legend-container {
+  display: flex;
+
+}
+
+li {
+  border: 0.5px solid gray;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 14px;
+}

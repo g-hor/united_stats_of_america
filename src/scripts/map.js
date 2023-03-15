@@ -1,11 +1,13 @@
+import { calculateSD, parse } from "./data_parsers";
+
 export function fetchAndRender(url, colors) {
-  const percentageText = [
-    "Below 90% of National Average",
-    "Between 90% and 95% of National Average",
-    "Between 95% and 100% of National Average",
-    "Between 100% and 105% of National Average",
-    "Between 105% and 110% of National Average",
-    "Over 110% of National Average"
+  const deviationText = [
+    "Two or More Standard Deviations (SD) Below National Average (NA)",
+    "Between Two and One SD Below NA",
+    "Between One SD Below NA and NA",
+    "Between One SD Above NA and NA",
+    "Between One and Two SD Above NA",
+    "Two more More SD Above NA"
   ]
 
   let mapData;
@@ -21,16 +23,12 @@ export function fetchAndRender(url, colors) {
         .then(data => {
           csvData = data;
           // console.log(csvData);
-          debugger
+          
           renderMap();
         })
     })
   
   function renderMap() {
-    const nationalData = csvData[0]
-    console.log(nationalData);
-    const nationalAvg = parseFloat(nationalData["18 or Older Estimate"])
-
     const width = 950;
     const height = 520;
     const path = d3.geoPath(d3.geoAlbersUsa());
@@ -62,20 +60,26 @@ export function fetchAndRender(url, colors) {
         let stateData = csvData.find((ele) => {
           return ele["State"] === stateName
         })
-        stateData ||= {"12-17 Estimate": "0", "18-25 Estimate": "0", "18 or Older Estimate": "0"}
+        stateData ||= {"18 or Older Estimate": "0"}
 
-        let stateAvg = parseFloat(stateData["18 or Older Estimate"]);
-        let difference = nationalAvg - stateAvg;
+        const stateAvg = parse(stateData["18 or Older Estimate"]);
+        const standardDev = (calculateSD(d3.map(csvData.slice(6), d => parse(d['18 or Older Estimate']))));
+        const nationalAvg = d3.mean(csvData.slice(6), ele => parse(ele["18 or Older Estimate"]))
 
-        if (difference <= -3) {
+        const minusTwoSD = nationalAvg - (2 * standardDev);
+        const minusOneSD = nationalAvg - (1 * standardDev);
+        const plusOneSD = nationalAvg + (1 * standardDev);
+        const plusTwoSD = nationalAvg + (2 * standardDev);
+
+        if (stateAvg <= minusTwoSD) {
           return colors[0];
-        } else if (difference > -3 && difference <= -1.5) {
+        } else if (stateAvg > minusTwoSD && stateAvg <= minusOneSD) {
           return colors[1];
-        } else if (difference > -1.5 && difference <= 0) {
+        } else if (stateAvg > minusOneSD && stateAvg <= nationalAvg) {
           return colors[2];
-        } else if (difference > 0 && difference <= 1.5) {
+        } else if (stateAvg > nationalAvg && stateAvg <= plusOneSD) {
           return colors[3];
-        } else if (difference > 1.5 && difference <= 3) {
+        } else if (stateAvg > plusOneSD && stateAvg <= plusTwoSD) {
           return colors[4];
         } else {
           return colors[5];
@@ -112,10 +116,10 @@ export function fetchAndRender(url, colors) {
         .attr('fill', `${color}`)
 
       portion.append('text')
-        .attr('x', '100')
+        .attr('x', '60')
         .attr('y', `${yAxis + 15}`)
         .attr('fill', 'black')
-        .text(`${percentageText[idx]}`)
+        .text(`${deviationText[idx]}`)
 
       yAxis += 15;
     });
@@ -153,17 +157,9 @@ export function fetchAndRender(url, colors) {
       );
     }
 
-    // removes commas from a stringified number
-    function parse(numString) {
-      if (numString.includes(',')) {
-        return parseInt(numString.replace(/,/g, ''));
-      } else {
-        return parseInt(numString);
-      }
-    }
-
     // enables click-dragging the map around inside SVG element
     svg.call(zoom);
+
   }
 
 }

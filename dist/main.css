@@ -56,11 +56,27 @@ table {
 }
 
 .filter-container {
-  width: 100%;
+  width: 25%;
+  margin-left: 10px;
 }
 
 ul {
   list-style-type: none;
+}
+
+.portion {
+  font-size: 12px;
+}
+
+.legend-container {
+  display: flex;
+}
+
+li {
+  border: 0.5px solid gray;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 14px;
 }
 
 body {
@@ -100,9 +116,11 @@ h1 {
 .map-container {
   width: 100%;
   height: 100%;
+  display: flex;
 }
 
 .us-map {
-  background-color: white;
+  border: 0.5px solid rgb(112, 112, 112);
+  border-radius: 14px;
   width: 100%;
 }
