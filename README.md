@@ -2,6 +2,8 @@
 ## Background
 United Stats of America is a 2D choropleth map data visualization that represents mental health statistics by state for the U.S.A. Even with prior knowledge of statistics, interpretation of the figures and values is somewhat hindered by technical jargon in that numerical data is not always easily readable. This project provides a way to intuitively navigate statistical data from state-to-state across the United States. The map is rendered using JSON data that is fetched from [topojson/US-Atlas]("https://github.com/topojson/us-atlas"), and each state's color is filled depending on statistical data from [Substance Abuse and Mental Health Services Administration's (SAMSHA) National Survey on Drug Use and Health (NSDUH) 2018-2019 data]("https://www.samhsa.gov/data/data-we-collect/nsduh-national-survey-drug-use-and-health").
 
+[Live link!]("https://g-hor.github.io/united_stats_of_america/")
+
 ![Splashpage](./splash_screenshot.png)
 
 ## Functionality & MVPs
