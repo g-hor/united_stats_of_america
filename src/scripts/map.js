@@ -171,7 +171,7 @@ export function fetchAndRender(url1, url2, colors) {
       svg.transition().duration(750).call(
         zoom.transform,
         d3.zoomIdentity
-          .translate(width / 2.2, height / 2)
+          .translate(width / 2, height / 2)
           .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
           .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
         d3.pointer(event, svg.node())

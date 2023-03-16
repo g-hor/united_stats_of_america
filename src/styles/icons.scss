@@ -1,0 +1,25 @@
+.icons {
+  position: fixed;
+  right: 2%;
+  top: 20px;
+}
+
+#more-info:hover + .hidden,
+.info-content:hover {
+  right: 2%;
+  // top: 20px;
+  padding: 20px;
+  position: absolute;
+  display: block;
+  opacity: 0.98;
+  font-size: 14px;
+  border-radius: 14px;
+  border-top-right-radius: 0;
+  background-color: whitesmoke;
+  width: 200px;
+  height: 600px;
+}
+
+.link {
+  text-decoration: underline;
+}

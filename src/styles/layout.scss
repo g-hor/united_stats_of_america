@@ -17,17 +17,10 @@ h1 {
     font-size: 32px;
     font-weight: 900;
     margin: 20px 0 5px 1.5%;
-    // background-image: linear-gradient(to right, rgba(215, 215, 215, 0), rgba(40, 40, 40, 0.1), rgba(40, 40, 40, 0.2), rgba(40, 40, 40, 0.1), rgba(215, 215, 215, 0));
 }
 
 #title-e {
-    font-size: 20px;
-}
-
-.icons {
-    position: fixed;
-    right: 2%;
-    top: 2%;
+    font-size: 18px;
 }
 
 h2 {
@@ -50,4 +43,9 @@ h2 {
 a, a:hover, a:focus, a:active {
     text-decoration: none;
     color: inherit;
+}
+
+img {
+    width: 22px;
+    height: 22px;
 }
