@@ -36,19 +36,36 @@
     <h2>Any Mental Illness in the Past Year</h2>
 
     <div class="all-container">
-
         <div class="modal" id="user-modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <ul>
-                    <li>Welcome to the United Stat(e)s of America! This webpage's aim is to spread awareness about general mental health and substance abuse.</li>
-                    <li id="tw">**TW: Suicide, Substance Use</li>
+                <ul id="instruction-list">
+                    <li id="tw">Sensitive Topics: Suicide, Substance Use</li>
+                    <br />
+                    <li>Welcome! This webpage's aim is to raise awareness about mental health and substance abuse issues.</li>
+                    <br />
+                    <li>Hover over the legend on the left side of the screen to see more details about the selected color.</li>
+                    <br />
+                    <li>The right side of the screen features buttons to select and view different categories.</li>
+                    <br />
+                    <li>This map is interactive, please feel free to click, drag, and zoom around! Clicking on the blank space will bring you back to the default U.S. map view.</li>
                 </ul>
             </div>
         </div>
 
         <div class="map-container">
             
+            <div class="hidden" id="state-details">
+                <span class="close">&times;</span>
+                <ul id="count-details">
+
+                </ul>
+
+                <ul id="percent-details">
+
+                </ul>
+            </div>
+
             <svg class="legend">
 
             </svg>
@@ -68,9 +85,6 @@
                     <li class="selector" id="table29">
                         Received Mental Health Services
                     </li>
-                    <li class="selector" id="table26">
-                        Needing But Not Receiving Treatment for Substance Use
-                    </li>
                     <li class="selector" id="table30">
                         Major Depressive Episode
                     </li>
@@ -82,9 +96,6 @@
                     </li>
                     <li class="selector" id="table33">
                         Attempted Suicide
-                    </li>
-                    <li class="selector" id="table2">
-                        Marijuana Use
                     </li>
                     <li class="selector" id="table7">
                         Cocaine Use
@@ -98,8 +109,14 @@
                     <li class="selector" id="table22">
                         Alcohol Use Disorder
                     </li>
+                    <li class="selector" id="table2">
+                        Marijuana Use
+                    </li>
                     <li class="selector" id="table23">
                         Substance Use Disorder
+                    </li>
+                    <li class="selector" id="table26">
+                        Needing But Not Receiving Treatment for Substance Use
                     </li>
                 </ul>
             </div>

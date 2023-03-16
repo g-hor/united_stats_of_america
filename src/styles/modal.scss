@@ -7,7 +7,7 @@
   height: 100%;
   overflow: auto;
   background-color: rgb(0,0,0);
-  background-color: rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.727);
 }
 
 .modal-content {
@@ -15,7 +15,10 @@
   margin: 10%;
   padding: 20px;
   border: 1px solid rgb(169, 169, 169);
-  width: 70%;
+  border-radius: 5px;
+  width: 57%;
+  text-align: left;
+  color: rgb(44, 44, 44);
 }
 
 .hidden {
@@ -32,9 +35,18 @@
 .close:hover,
 .close:focus {
   color: white;
+  background-color: gray;
   text-decoration: none;
 }
 
-#tw {
-  font-size: 12px;
+ul.instruction-list li {
+  margin: 20px;
 }
+
+#tw {
+  font-size: 20px;
+  color: black;
+  margin: 10px;
+  text-align: center;
+}
+

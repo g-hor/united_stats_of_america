@@ -1,6 +1,6 @@
 import { calculateSD, parse } from "./data_parsers";
 
-export function fetchAndRender(url, colors) {
+export function fetchAndRender(url1, url2, colors) {
   const deviationText = [
     "Two or More Standard Deviations (SD) Below National Average (NA)",
     "Between Two and One SD Below NA",
@@ -11,18 +11,25 @@ export function fetchAndRender(url, colors) {
   ]
 
   let mapData;
-  let csvData;
-
+  let countData;
+  let centData;
   
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json")
     .then(data => {
       mapData = data;
       // console.log(mapData);
   
-      d3.csv(url)
+      d3.csv(url1)
         .then(data => {
-          csvData = data;
-          // console.log(csvData);
+          countData = data.map(function(state) {
+            return {"State": state["State"],
+              "12-17 Estimate": state["12-17 Estimate"],
+              "18-25 Estimate": state["18-25 Estimate"],
+              "12 or Older Estimate": state["12 or Older Estimate"], 
+              "18 or Older Estimate": state["18 or Older Estimate"],
+              "26 or Older Estimate": state["26 or Older Estimate"]
+          }});
+          // console.log(countData);
           
           renderMap();
         })
@@ -57,13 +64,14 @@ export function fetchAndRender(url, colors) {
       .attr('d', path)
       .attr('fill', (state) => {
         let stateName = state.properties.name;
-        let stateData = csvData.find((ele) => {
+        let stateData = countData.find((ele) => {
           return ele["State"] === stateName
         })
 
-        const nationalAvg = d3.mean(csvData.slice(6), ele => parse(ele["18 or Older Estimate"]))
-        const standardDev = (calculateSD(d3.map(csvData.slice(6), d => parse(d['18 or Older Estimate']))));
+        const nationalAvg = d3.mean(countData.slice(6), ele => parse(ele["18 or Older Estimate"]))
+        const standardDev = (calculateSD(d3.map(countData.slice(6), d => parse(d['18 or Older Estimate']))));
 
+        // geographical data and statistical data do not align, this handles instances where no state match is found
         stateData ||= {"18 or Older Estimate": `${nationalAvg}`}
         const stateAvg = parse(stateData["18 or Older Estimate"]);
 
@@ -88,7 +96,8 @@ export function fetchAndRender(url, colors) {
         }
       })
       .join('path')
-      .on('click', clicked)
+      // .on('click', clicked)
+      .on('click', makeModal)
       .attr('d', path);
 
 
@@ -162,7 +171,7 @@ export function fetchAndRender(url, colors) {
       svg.transition().duration(750).call(
         zoom.transform,
         d3.zoomIdentity
-          .translate(width / 2, height / 2)
+          .translate(width / 2.2, height / 2)
           .scale(Math.min(8, 0.9 / Math.max((x1 - x0) / width, (y1 - y0) / height)))
           .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
         d3.pointer(event, svg.node())
@@ -178,12 +187,95 @@ export function fetchAndRender(url, colors) {
 
     // resets view back to default sizing/position
     function reset() {
+      const countContainer = document.getElementById('count-details');
+      const centContainer = document.getElementById('percent-details');
+      const stateDetails = document.getElementById('state-details');
+    
+      countContainer.innerHTML = '';
+      centContainer.innerHTML = '';
+      stateDetails.classList.add('hidden');
+
       states.transition().style("fill", null);
       svg.transition().duration(750).call(
         zoom.transform,
         d3.zoomIdentity,
         d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
       );
+    }
+
+    // makes modal with details for selected state
+    function makeModal (event, state) {
+      event.stopPropagation();
+      const stateDetails = document.getElementById('state-details');
+      const countContainer = document.getElementById('count-details');
+      const centContainer = document.getElementById('percent-details');
+      
+      countContainer.innerHTML = '';
+      centContainer.innerHTML = '';
+
+      let stateName = state.properties.name;
+      let stateCount = countData.find((ele) => {
+        return ele["State"] === stateName;
+      })
+      
+      d3.csv(url2).then(data => {
+        centData = data.map(function(state) {
+            return {"State": state["State"],
+              "12-17 Estimate": state["12-17 Estimate"],
+              "18-25 Estimate": state["18-25 Estimate"],
+              "12 or Older Estimate": state["12 or Older Estimate"], 
+              "18 or Older Estimate": state["18 or Older Estimate"],
+              "26 or Older Estimate": state["26 or Older Estimate"]
+          }});
+
+        let stateCent = centData.find((ele) => {
+          return ele["State"] === stateName;
+        })
+
+        // stateCount ||= {"12-17 Estimate": "Sorry, we don't have that data.",
+        //   "18-25 Estimate": "Sorry, we don't have that data.",
+        //   "12 or Older Estimate": "Sorry, we don't have that data.", 
+        //   "18 or Older Estimate": "Sorry, we don't have that data.",
+        //   "26 or Older Estimate": "Sorry, we don't have that data."
+        // };
+        // stateCent ||= {"12-17 Estimate": "Sorry, we don't have that data.",
+        //   "18-25 Estimate": "Sorry, we don't have that data.",
+        //   "12 or Older Estimate": "Sorry, we don't have that data.", 
+        //   "18 or Older Estimate": "Sorry, we don't have that data.",
+        //   "26 or Older Estimate": "Sorry, we don't have that data."
+        // };
+
+        const countHeader = document.createElement('li');
+        countHeader.innerHTML = `Raw count estimations (by age) for ${stateName}:`;
+        countContainer.appendChild(countHeader);
+
+        const centHeader = document.createElement('li');
+        centHeader.innerHTML = `Percentage estimations (by age) for ${stateName}:`;
+        centContainer.appendChild(centHeader);
+
+        Object.entries(stateCount).slice(1).forEach(function(pair) {
+          if (pair[1]) {
+            // debugger
+            const countPair = document.createElement('li');
+            countPair.innerHTML = `${pair[0]}: ${parse(pair[1]) * 1000} people`;
+            countContainer.appendChild(countPair)
+          }
+        })
+
+        Object.entries(stateCent).slice(1).forEach(function(pair) {
+          if (pair[1]) {
+            const centPair = document.createElement('li');
+            centPair.innerHTML = `${pair[0]}: ${pair[1]}`;
+            centContainer.appendChild(centPair)
+          }
+        })
+      })
+
+      stateDetails.classList.remove('hidden');
+      stateDetails.style.backgroundColor='lightgray';
+      stateDetails.setAttribute('z-index', '5');
+
+      clicked(event, state);
     }
 
     // enables click-dragging the map around inside SVG element

@@ -1,0 +1,26 @@
+#state-details {
+  color: black;
+  background-color: rgba(207, 207, 207, 0.476);
+  position: absolute;
+  z-index: 5;
+  width: 200px;
+  height: 450px;
+  top: 24%;
+  right: 24%;
+  border-radius: 14px;
+  border-bottom: 1px solid gray;
+  border-right: 1px solid gray;
+  opacity: 0.8;
+  font-size: 14px;
+  padding: 10px;
+}
+
+#count-details,
+#percent-details {
+  margin: 20px;
+}
+
+#count-details li,
+#percent-details li {
+  margin: 5px;
+}
