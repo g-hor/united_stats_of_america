@@ -96,7 +96,6 @@ export function fetchAndRender(url1, url2, colors) {
         }
       })
       .join('path')
-      // .on('click', clicked)
       .on('click', makeModal)
       .attr('d', path);
 
