@@ -17,7 +17,6 @@ export function fetchAndRender(url1, url2, colors) {
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json")
     .then(data => {
       mapData = data;
-      // console.log(mapData);
   
       d3.csv(url1)
         .then(data => {
@@ -29,8 +28,6 @@ export function fetchAndRender(url1, url2, colors) {
               "18 or Older Estimate": state["18 or Older Estimate"],
               "26 or Older Estimate": state["26 or Older Estimate"]
           }});
-          // console.log(countData);
-          
           renderMap();
         })
     })
@@ -79,7 +76,6 @@ export function fetchAndRender(url1, url2, colors) {
         const minusOneSD = nationalAvg - (1 * standardDev);
         const plusOneSD = nationalAvg + (1 * standardDev);
         const plusTwoSD = nationalAvg + (2 * standardDev);
-        // debugger
         
         if (stateAvg <= minusTwoSD) {
           return colors[0];
