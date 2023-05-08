@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const stateDetails = document.getElementById('state-details');
   const countContainer = document.getElementById('count-details');
   const centContainer = document.getElementById('percent-details');
+  const instructions = document.querySelector('.fa-circle-question');
   
   // closes instructions modal upon clicking close
   closeButton.addEventListener('click', function() {
@@ -35,6 +36,10 @@ document.addEventListener("DOMContentLoaded", () => {
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
   });
+
+  instructions.addEventListener('click', function () {
+    userModal.classList.remove('hidden');
+  })
 
   // closes instructions modal upon clicking anywhere
   window.addEventListener('click', function(event) {

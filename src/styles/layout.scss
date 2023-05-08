@@ -9,23 +9,28 @@ body {
 }
 
 nav {
-    display: flex;
-    justify-content:flex-start;
     width: 98%;
+    padding: 0 4%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 20px 0 5px 0;
 }
 
 h1 {
-    font-size: 32px;
+    display: inline-block;
+    font-size: 2rem;
     font-weight: 900;
-    margin: 20px 0 5px 35px;
+    margin: 0px 20px 0px 35px;
 }
 
 #title-e {
     font-size: 18px;
 }
 
+
 h2 {
-    font-size: 45px;
+    font-size: 3rem;
     color: rgb(0, 0, 0);
     font-weight: 300;
     margin: 0 0 8px 68px;
@@ -35,6 +40,7 @@ h2 {
 
 .all-container {
     width: 97%;
+    margin-bottom: 20px;
 }
 
 .map-container {

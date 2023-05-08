@@ -14,7 +14,7 @@
 
 .modal-content {
   background-color: #FCFAF6;
-  padding: 50px 35px;
+  padding: 20px 35px;
   border-radius: 14px;
   width: 30%;
   text-align: left;
@@ -53,7 +53,7 @@
 
 
 #instruction-list li {
-  margin: 1em 0;
+  margin: 1.5rem 0;
   font-weight: 300;
 
   &:nth-child(2) {
@@ -63,6 +63,31 @@
   &:nth-child(3) {
     font-size: 18px;
     font-weight: 400;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #666;
+  }
+
+  .fa-solid {
+    font-size: 18px;
+  }
+
+  &:nth-child(4) {
+    list-style: circle;
+  }
+
+  &:nth-child(5) {
+    list-style: circle;
+  }
+
+  &:nth-child(6) {
+    list-style: circle;
+  }
+
+  &:nth-child(7) {
+    list-style: circle;
   }
 }
 
+#tw {
+  font-style: italic;
+}

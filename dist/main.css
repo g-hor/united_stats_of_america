@@ -67,13 +67,19 @@ ul {
 li.selector {
   border: 0.2px solid gray;
   padding: 8px;
-  margin: 12px;
+  margin: 12px 8px;
   border-radius: 14px;
   cursor: pointer;
 }
+li.selector:first-child {
+  margin-top: 0;
+}
+li.selector:last-child {
+  margin-bottom: 0;
+}
 
 li.selector:hover {
-  scale: 1.02;
+  scale: 1.01;
   outline: rgb(80, 80, 80) solid 1px;
 }
 
@@ -88,15 +94,19 @@ body {
 }
 
 nav {
-  display: flex;
-  justify-content: flex-start;
   width: 98%;
+  padding: 0 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 20px 0 5px 0;
 }
 
 h1 {
-  font-size: 32px;
+  display: inline-block;
+  font-size: 2rem;
   font-weight: 900;
-  margin: 20px 0 5px 35px;
+  margin: 0px 20px 0px 35px;
 }
 
 #title-e {
@@ -104,7 +114,7 @@ h1 {
 }
 
 h2 {
-  font-size: 45px;
+  font-size: 3rem;
   color: rgb(0, 0, 0);
   font-weight: 300;
   margin: 0 0 8px 68px;
@@ -114,6 +124,7 @@ h2 {
 
 .all-container {
   width: 97%;
+  margin-bottom: 20px;
 }
 
 .map-container {
@@ -183,7 +194,7 @@ img {
 
 .modal-content {
   background-color: #FCFAF6;
-  padding: 50px 35px;
+  padding: 20px 35px;
   border-radius: 14px;
   width: 30%;
   text-align: left;
@@ -219,7 +230,7 @@ img {
 }
 
 #instruction-list li {
-  margin: 1em 0;
+  margin: 1.5rem 0;
   font-weight: 300;
 }
 #instruction-list li:nth-child(2) {
@@ -228,6 +239,27 @@ img {
 #instruction-list li:nth-child(3) {
   font-size: 18px;
   font-weight: 400;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #666;
+}
+#instruction-list li .fa-solid {
+  font-size: 18px;
+}
+#instruction-list li:nth-child(4) {
+  list-style: circle;
+}
+#instruction-list li:nth-child(5) {
+  list-style: circle;
+}
+#instruction-list li:nth-child(6) {
+  list-style: circle;
+}
+#instruction-list li:nth-child(7) {
+  list-style: circle;
+}
+
+#tw {
+  font-style: italic;
 }
 
 #state-details {
@@ -259,17 +291,20 @@ img {
 }
 
 .icons {
-  position: fixed;
-  right: 5.55%;
-  top: 20px;
+  width: calc(100% - 457px);
+  min-width: 180px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 #more-info:hover + .hidden,
 .info-content:hover {
+  display: block;
   right: 2%;
   padding: 20px;
   position: absolute;
-  display: block;
   opacity: 0.98;
   font-size: 14px;
   border-radius: 14px;
@@ -278,6 +313,10 @@ img {
   background-color: #c8c9d4;
   width: 200px;
   height: 600px;
+}
+
+.fa-circle-info, .fa-circle-question {
+  cursor: pointer;
 }
 
 .link {

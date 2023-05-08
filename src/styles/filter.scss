@@ -11,12 +11,20 @@ ul {
 li.selector {
   border: 0.2px solid gray;
   padding: 8px;
-  margin: 12px;
+  margin: 12px 8px;
   border-radius: 14px;
   cursor: pointer;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 li.selector:hover {
-  scale: 1.02;
+  scale: 1.01;
   outline: rgb(80, 80, 80) solid 1px;
 }
