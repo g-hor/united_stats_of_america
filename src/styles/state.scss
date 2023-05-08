@@ -1,18 +1,19 @@
 #state-details {
   color: black;
-  background-color: rgba(207, 207, 207, 0.476);
+  background-color: #FCFAF6;
   position: absolute;
   z-index: 5;
-  width: 200px;
-  height: 450px;
-  top: 24%;
-  right: 26%;
+  width: 20%;
+  height: 20%;
+  min-width: 200px;
+  min-height: 300px;
+  top: calc(50% - 300px);
+  right: 25%;
   border-radius: 14px;
-  border-bottom: 1px solid rgb(152, 152, 152);
-  border-right: 1px solid rgb(152, 152, 152);
   opacity: 0.7;
   font-size: 14px;
   padding: 10px;
+  box-shadow: 0px 0px 8px 0px rgba(0, 0, 0, 0.4);
 }
 
 #count-details,

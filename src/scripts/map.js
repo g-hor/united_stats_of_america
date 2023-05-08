@@ -227,19 +227,6 @@ export function fetchAndRender(url1, url2, colors) {
           return ele["State"] === stateName;
         })
 
-        // stateCount ||= {"12-17 Estimate": "Sorry, we don't have that data.",
-        //   "18-25 Estimate": "Sorry, we don't have that data.",
-        //   "12 or Older Estimate": "Sorry, we don't have that data.", 
-        //   "18 or Older Estimate": "Sorry, we don't have that data.",
-        //   "26 or Older Estimate": "Sorry, we don't have that data."
-        // };
-        // stateCent ||= {"12-17 Estimate": "Sorry, we don't have that data.",
-        //   "18-25 Estimate": "Sorry, we don't have that data.",
-        //   "12 or Older Estimate": "Sorry, we don't have that data.", 
-        //   "18 or Older Estimate": "Sorry, we don't have that data.",
-        //   "26 or Older Estimate": "Sorry, we don't have that data."
-        // };
-
         const countHeader = document.createElement('li');
         countHeader.innerHTML = `Raw count estimations (by age) for ${stateName}:`;
         countContainer.appendChild(countHeader);
@@ -250,7 +237,6 @@ export function fetchAndRender(url1, url2, colors) {
 
         Object.entries(stateCount).slice(1).forEach(function(pair) {
           if (pair[1]) {
-            // debugger
             const countPair = document.createElement('li');
             countPair.innerHTML = `${pair[0]}: ${parse(pair[1]) * 1000} people`;
             countContainer.appendChild(countPair)
@@ -267,7 +253,6 @@ export function fetchAndRender(url1, url2, colors) {
       })
 
       stateDetails.classList.remove('hidden');
-      stateDetails.style.backgroundColor='lightgray';
       stateDetails.setAttribute('z-index', '5');
 
       clicked(event, state);
