@@ -81,10 +81,18 @@
 
   &:nth-child(6) {
     list-style: circle;
+
+    i {
+      cursor: default;
+    }
   }
 
   &:nth-child(7) {
     list-style: circle;
+
+    i {
+      cursor: default;
+    }
   }
 }
 

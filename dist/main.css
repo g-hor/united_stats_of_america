@@ -253,8 +253,14 @@ img {
 #instruction-list li:nth-child(6) {
   list-style: circle;
 }
+#instruction-list li:nth-child(6) i {
+  cursor: default;
+}
 #instruction-list li:nth-child(7) {
   list-style: circle;
+}
+#instruction-list li:nth-child(7) i {
+  cursor: default;
 }
 
 #tw {
@@ -357,6 +363,7 @@ img {
 .fa-circle-info, .fa-circle-question {
   cursor: pointer;
 }
+
 .link {
   text-decoration: underline;
 }
