@@ -3,23 +3,28 @@
 // import { calculate } from "./scripts/calculation.js";
 import { fetchAndRender } from "./scripts/map.js";
 
-const ANY_ILLNESS = ["#6B705C", "#A5A58D", "#B7B7A4", "#FFE8D6", "#DDBEA9", "#CB997E"];
-const DEPRESSION = ["#ccccff", "#99ccff", "#6699ff", "#3366ff", "#3333ff", "#000066"];
-const SRS_ILLNESS = ["#F7D1CD", "#E8C2CA", "#D1B3C4", "#B392AC", "#735D78", "#4C404F"];
-const SUBSTANCE_USE = ["#EDE0D4", "#E6CCB2", "#DDB892", "#B08968", "#9C6644", "#7F5539"];
-const WEED_USE = ["#ECF39E", "#BDD39C", "#90A955", "#4F772D", "#31572C", "#132A13"];
-const PAIN_RELIEF = ["#FFCDB2", "#FFB4A2", "#E5989B", "#C17179", "#A36672", "#6D6875"];
-const ALCOHOL = ["#E9E5D8", "#D4E0CD", "#A3C9A8", "#84B59F", "#69A297", "#50808E"];
-const RECEIVED_SERV = ["#D58272", "#A7A18B", "#B0B3A8", "#8FA78B", "#61BD87", "#429E69"];
-const THOUGHTS = ["#8DA253", "#C3CFA0", "#FEDB72", "#F7E1D3", "#EDBF9E", "#DA9461"];
-const PLANS = ["#EFD9CE", "#DEC0F1", "#B79CED", "#957FEF", "#7161EF", "#3921E8"];
-const COCAINE = ["#745CFF", "#8585FF", "#BAADFF", "#FFEEDD", "#FFA970", "#FF781F"];
+const ANY_ILLNESS = ["#4B4F40", "#89896C", "#B7B7A4", "#FFE8D6", "#C5906D", "#AF6B46"];
+const DEPRESSION = ["#432853", "#7A002F", "#FFAFCC", "#BDE0FE", "#005FB8", "#002A52"];
+const SRS_ILLNESS = ["#832124", "#8C545F", "#FFBEAD", "#B392AC", "#735D78", "#4C404F"];
+const SUBSTANCE_USE = ["#261042", "#682D8B", "#B298DC", "#B8D0EB", "#0CACA6", "#075F5D"];
+const WEED_USE = ["#0B460B", "#3D6D37", "#C0DDA6", "#F1F6B6", "#6E8745", "#4C5D32"];
+const PAIN_RELIEF = ["#112D2D", "#4E554E", "#E7D8C9", "#E6BEAE", "#8D6E53", "#403326"];
+const ALCOHOL = ["#20163B", "#4C4474", "#B5A1CE", "#DFCBE2", "#923A6A", "#3A172B"];
+const RECEIVED_SERV = ["#5E3C1D", "#AC7035", "#FAEDCD", "#FCEF9C", "#717A29", "#48512A"];
+const THOUGHTS = ["#202231", "#4C586B", "#D9E4E8", "#F46778", "#8C031A", "#490914"];
+const PLANS = ["#2F3733", "#455E4F", "#FFD5C2", "#FFADBC", "#901326", "#5C474D"];
+const ATTEMPTED = ['#191D24', '#352A3C', '#EFD3D7', '#ADB8FF', '#000A52', '#000529'];
+const COCAINE = ["#535E1D", "#EEEBAA", "#DFEBD6", "#F19C79", "#843D33", "#542C27"];
+const METH = ['#2F2B22', '#6A604D', '#C5C3BE', '#F4AC90', '#CD4813', '#5D1F09'];
+const NOT_RECEIVING = ['#3D4051', '#536379', '#9DBEB9', '#B2C9AB', '#859051', '#8C772B']
+
 
 document.addEventListener("DOMContentLoaded", () => {
 
   const userModal = document.getElementById('user-modal');
-  const closeButton = document.querySelector('.close');
-  const closeState = document.querySelectorAll('.close')[1];
+  const closeUser = document.querySelector('.close');
+  const closeData = document.querySelectorAll('.close')[1];
+  const closeState = document.querySelectorAll('.close')[2];
   const stateDetails = document.getElementById('state-details');
   const countContainer = document.getElementById('count-details');
   const centContainer = document.getElementById('percent-details');
@@ -29,8 +34,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
   
   // closes instructions modal upon clicking close
-  closeButton.addEventListener('click', function() {
+  closeUser.addEventListener('click', function() {
     userModal.classList.add('hidden');
+  });
+
+  closeData.addEventListener('click', function() {
     dataModal.classList.add('hidden');
   });
 
@@ -43,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   questionIcon.addEventListener('click', function() {
     userModal.classList.remove('hidden');
-  })
+  });
 
   infoIcon.addEventListener('click', function() {
     dataModal.classList.remove('hidden');
@@ -136,7 +144,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".legend").innerHTML = "";
     document.querySelector("h2").innerHTML = "Attempted Suicide in the Past Year";
 
-    fetchAndRender("NSDUH_count/table33.csv", "NSDUH_percentages/table33.csv", DEPRESSION);
+    fetchAndRender("NSDUH_count/table33.csv", "NSDUH_percentages/table33.csv", ATTEMPTED);
   })
 
   document.getElementById("table7").addEventListener("click", () => {
@@ -158,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".legend").innerHTML = "";
     document.querySelector("h2").innerHTML = "Methamphetamine Use in the Past Year";
 
-    fetchAndRender("NSDUH_count/table11.csv", "NSDUH_percentages/table11.csv", ANY_ILLNESS);
+    fetchAndRender("NSDUH_count/table11.csv", "NSDUH_percentages/table11.csv", METH);
   })
 
   document.getElementById("table12").addEventListener("click", () => {
@@ -213,7 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".legend").innerHTML = "";
     document.querySelector("h2").innerHTML = "Needing But Not Receiving Treatment at a Specialty Facility for Substance Use in the Past Year";
 
-    fetchAndRender("NSDUH_count/table26.csv", "NSDUH_percentages/table26.csv", ANY_ILLNESS);
+    fetchAndRender("NSDUH_count/table26.csv", "NSDUH_percentages/table26.csv", NOT_RECEIVING);
   })
 
 })

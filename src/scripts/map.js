@@ -147,6 +147,12 @@ export function fetchAndRender(url1, url2, colors) {
           legendDetail.style.left = `${offsetLeft + legendWidth - 1}px`;
           legendDetail.style.top = `${offsetTop + 65 + (80 * idx)}px`;
           legendDetail.style.backgroundColor = color;
+
+          if (idx >= 0 && idx <= 1 || idx >= 4 && idx <= 5) {
+            legendDetail.style.color = 'white';
+          } else {
+            legendDetail.style.color = 'black';
+          }
         })
         .on('mouseout', () => {
           const legendDetail = document.getElementById("legend-detail");

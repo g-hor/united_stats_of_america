@@ -261,6 +261,9 @@ img {
   font-style: italic;
 }
 
+#info-content {
+  padding: 20px;
+}
 #info-content ul li {
   padding: 10px 0;
 }
@@ -312,6 +315,16 @@ img {
 }
 #count-details li:nth-child(4),
 #percent-details li:nth-child(4) {
+  list-style: circle;
+  font-weight: 200;
+}
+#count-details li:nth-child(5),
+#percent-details li:nth-child(5) {
+  list-style: circle;
+  font-weight: 200;
+}
+#count-details li:nth-child(6),
+#percent-details li:nth-child(6) {
   list-style: circle;
   font-weight: 200;
 }
