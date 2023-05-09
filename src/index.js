@@ -23,11 +23,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const stateDetails = document.getElementById('state-details');
   const countContainer = document.getElementById('count-details');
   const centContainer = document.getElementById('percent-details');
-  const instructions = document.querySelector('.fa-circle-question');
+  const questionIcon = document.querySelector('.fa-circle-question');
+  const infoIcon = document.querySelector('.fa-circle-info');
+  const dataModal = document.getElementById('data-modal');
+
   
   // closes instructions modal upon clicking close
   closeButton.addEventListener('click', function() {
-    userModal.classList.add('hidden')
+    userModal.classList.add('hidden');
+    dataModal.classList.add('hidden');
   });
 
   // closes state details modal upon clicking close
@@ -37,16 +41,24 @@ document.addEventListener("DOMContentLoaded", () => {
     centContainer.innerHTML = '';
   });
 
-  instructions.addEventListener('click', function () {
+  questionIcon.addEventListener('click', function() {
     userModal.classList.remove('hidden');
   })
+
+  infoIcon.addEventListener('click', function() {
+    dataModal.classList.remove('hidden');
+  });
 
   // closes instructions modal upon clicking anywhere
   window.addEventListener('click', function(event) {
     if (event.target == userModal) {
       userModal.classList.add('hidden');
     }
-  })
+    if (event.target == dataModal) {
+      dataModal.classList.add('hidden');
+    }
+  });
+
 
 
   fetchAndRender("NSDUH_count/table27.csv", "NSDUH_percentages/table27.csv", ANY_ILLNESS);

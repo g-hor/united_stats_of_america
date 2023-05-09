@@ -141,9 +141,10 @@ export function fetchAndRender(url1, url2, colors) {
           const offsetLeft = document.querySelector('.map-container').offsetLeft;
           const offsetTop = document.querySelector('.map-container').offsetTop;
           const legendWidth = document.querySelector('.legend').width.baseVal.value;
+          
           legendDetail.innerText = detail;
           legendDetail.style.display = "block";
-          legendDetail.style.left = `${offsetLeft + legendWidth}px`;
+          legendDetail.style.left = `${offsetLeft + legendWidth - 1}px`;
           legendDetail.style.top = `${offsetTop + 65 + (80 * idx)}px`;
           legendDetail.style.backgroundColor = color;
         })

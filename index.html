@@ -27,58 +27,7 @@
         </h1>
         <div class="icons">
             <div>
-                <i class="fa-solid fa-circle-info fa-2x" id="more-info">
-                    <div class="hidden info-content">
-                        <ul>
-                            <li>
-                                Standard deviation (SD) is a measure of how much data varies from the average (mean). 
-                                The standard deviation of each dataset was calculated on the raw population count, 
-                                and this standard deviation was used to determine the fill-color of each state. 
-                                In other words, each state's shade represents how far that state's average is from the 
-                                national average (NA).
-                            </li>
-                            <br />
-                            <li>
-                                Some limitations of the represented data include:
-                                <ul>
-                                    <li>
-                                        This data may not reflect recent changes, as they were taken from the results of surveys from 2018-2019.
-                                    </li>
-                                    <li>
-                                        Survey responses may not accurately reflect actual conditions because respondents voluntarily provide 
-                                        responses that may not be entirely truthful/accurate.
-                                    </li>
-                                    <li>
-                                        Population size varies widely from state to state, which will skew the national average.
-                                    </li>
-                                </ul>
-                            </li>
-                            <br />
-                            <li>
-                                Sources:
-                                <br>
-                                <br>
-                                <li class="link">
-                                    <a href="https://www.samhsa.gov/data/nsduh/state-reports-NSDUH-2019">
-                                        Substance Abuse and Mental Health Services Administration
-                                    </a>
-                                </li>
-                                <br>
-                                <li class="link">
-                                    <a href="https://observablehq.com/@d3/zoom-to-bounding-box">
-                                        D3.js boilerplate code for map
-                                    </a>
-                                </li>
-                                <br>
-                                <li class="link">
-                                    <a href="https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json">
-                                        Map JSON file
-                                    </a>
-                                </li>
-                            </li>
-                        </ul>
-                    </div>
-                </i>
+                <i class="fa-solid fa-circle-info fa-2x" id="more-info"></i>
                 <i class="fa-solid fa-circle-question fa-2x"></i>
             </div>
             <div>
@@ -130,10 +79,64 @@
             </div>
         </div>
 
+        <div class="modal hidden" id="data-modal">
+            <div class="modal-content" id="info-content">
+                <div class="close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
+                <ul>
+                    <li>
+                        Standard deviation (SD) is a measure of how much data varies from the average (mean). 
+                        The standard deviation of each dataset was calculated on the raw population count, 
+                        and this standard deviation was used to determine the fill-color of each state. 
+                        In other words, each state's shade represents how far that state's average is from the 
+                        national average (NA).
+                    </li>
+                    <li>
+                        Some limitations of the represented data include:
+                        <ul>
+                            <li>
+                                This data may not reflect recent changes, as they were taken from the results of surveys from 2018-2019.
+                            </li>
+                            <li>
+                                Survey responses may not accurately reflect actual conditions because respondents voluntarily provide 
+                                responses that may not be entirely truthful/accurate.
+                            </li>
+                            <li>
+                                Population size varies widely from state to state, which will skew the national average.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Sources:
+                        <ul>
+                            <li class="link">
+                                <a href="https://www.samhsa.gov/data/nsduh/state-reports-NSDUH-2019">
+                                    Substance Abuse and Mental Health Services Administration
+                                </a>
+                            </li>
+                            <li class="link">
+                                <a href="https://observablehq.com/@d3/zoom-to-bounding-box">
+                                    D3.js boilerplate code for map
+                                </a>
+                            </li>
+                            <li class="link">
+                                <a href="https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json">
+                                    Map JSON file
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         <div class="map-container">
             
             <div class="hidden" id="state-details">
-                <span class="close">&times;</span>
+                <div class="close">
+                    <i class="fa-solid fa-xmark"></i>
+                </div>
                 <ul id="count-details">
 
                 </ul>

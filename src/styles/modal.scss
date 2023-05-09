@@ -33,8 +33,8 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 25px;
-  right: 25px;
+  top: 10px;
+  right: 10px;
 
   i {
     cursor: pointer;
@@ -90,4 +90,17 @@
 
 #tw {
   font-style: italic;
+}
+
+
+#info-content {
+
+    ul li {
+      padding: 10px 0;
+
+      li {
+        list-style: circle;
+        font-weight: 300;
+      }
+    }
 }
