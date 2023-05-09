@@ -1,4 +1,5 @@
 import { calculateSD, parse } from "./data_parsers";
+import { createLegend } from "./legend";
 
 export function fetchAndRender(url1, url2, colors) {
   const deviationText = [
@@ -17,7 +18,6 @@ export function fetchAndRender(url1, url2, colors) {
   d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json")
     .then(data => {
       mapData = data;
-      // console.log(mapData);
   
       d3.csv(url1)
         .then(data => {
@@ -29,8 +29,6 @@ export function fetchAndRender(url1, url2, colors) {
               "18 or Older Estimate": state["18 or Older Estimate"],
               "26 or Older Estimate": state["26 or Older Estimate"]
           }});
-          // console.log(countData);
-          
           renderMap();
         })
     })
@@ -79,7 +77,6 @@ export function fetchAndRender(url1, url2, colors) {
         const minusOneSD = nationalAvg - (1 * standardDev);
         const plusOneSD = nationalAvg + (1 * standardDev);
         const plusTwoSD = nationalAvg + (2 * standardDev);
-        // debugger
         
         if (stateAvg <= minusTwoSD) {
           return colors[0];
@@ -109,58 +106,10 @@ export function fetchAndRender(url1, url2, colors) {
       .attr('fill', 'none')
       .attr('stroke', 'white')
       .attr('stroke-linejoin', 'round')
-      .attr('d', path(topojson.mesh(mapData, mapData.objects.states, (a, b) => a !== b)))
+      .attr('d', path(topojson.mesh(mapData, mapData.objects.states, (a, b) => a !== b)));
 
-
-    // create color legend
-    const legend = d3.select('.legend');
-    let yAxis = 65;
-
-    // iterate through colors to create colored rectangle + associated text description
-    colors.forEach(function(color, idx) {
-      legend.append('rect')
-        .attr('x', '0')
-        .attr('y', `${yAxis}`)
-        .attr('width', '20')
-        .attr('height', '80')
-        .attr('fill', `${color}`)
-        .attr('id', `color-${idx}`)
-        .attr('idx', idx)
-        .attr('data-text', `${deviationText[idx]}`)
-
-      d3.select(`#color-${idx}`)
-        .append('text')
-        .attr('x', '23')
-        .attr('y', `${yAxis}`)
-        .attr('width', '200')
-        .attr('height', '80')
-        .text(`${deviationText[idx]}`)
-
-      d3.select(`#color-${idx}`)
-        .on('mouseover', (e) => {
-          const el = e.target;
-          const detail = el.dataset.text;
-          const idx = Number(el.getAttribute('idx'));
-          const legendDetail = document.getElementById("legend-detail");
-          const offsetLeft = document.querySelector('.map-container').offsetLeft;
-          const offsetTop = document.querySelector('.map-container').offsetTop;
-          const legendWidth = document.querySelector('.legend').width.baseVal.value;
-          legendDetail.innerText = detail;
-          legendDetail.style.display = "block";
-          legendDetail.style.left = `${offsetLeft + legendWidth}px`;
-          legendDetail.style.top = `${offsetTop + 65 + (80 * idx)}px`;
-          legendDetail.style.backgroundColor = color;
-        })
-        .on('mouseout', () => {
-          const legendDetail = document.getElementById("legend-detail");
-          legendDetail.style.display = 'none';
-        });
-
-
-      yAxis += 80;
-    });
-
-
+    // make a color legend for the map
+    createLegend(colors);
     
     // zoom in on state when clicked
     function clicked(event, d) {
@@ -175,13 +124,13 @@ export function fetchAndRender(url1, url2, colors) {
           .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
         d3.pointer(event, svg.node())
       );
-    }
+    };
     
     function zoomed(event) {
       const {transform} = event;
       g.attr("transform", transform);
       g.attr("stroke-width", 1 / transform.k);
-    }
+    };
 
 
     // resets view back to default sizing/position
@@ -200,7 +149,7 @@ export function fetchAndRender(url1, url2, colors) {
         d3.zoomIdentity,
         d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
       );
-    }
+    };
 
     // makes modal with details for selected state
     function makeModal (event, state) {
@@ -231,19 +180,6 @@ export function fetchAndRender(url1, url2, colors) {
           return ele["State"] === stateName;
         })
 
-        // stateCount ||= {"12-17 Estimate": "Sorry, we don't have that data.",
-        //   "18-25 Estimate": "Sorry, we don't have that data.",
-        //   "12 or Older Estimate": "Sorry, we don't have that data.", 
-        //   "18 or Older Estimate": "Sorry, we don't have that data.",
-        //   "26 or Older Estimate": "Sorry, we don't have that data."
-        // };
-        // stateCent ||= {"12-17 Estimate": "Sorry, we don't have that data.",
-        //   "18-25 Estimate": "Sorry, we don't have that data.",
-        //   "12 or Older Estimate": "Sorry, we don't have that data.", 
-        //   "18 or Older Estimate": "Sorry, we don't have that data.",
-        //   "26 or Older Estimate": "Sorry, we don't have that data."
-        // };
-
         const countHeader = document.createElement('li');
         countHeader.innerHTML = `Raw count estimations (by age) for ${stateName}:`;
         countContainer.appendChild(countHeader);
@@ -254,7 +190,6 @@ export function fetchAndRender(url1, url2, colors) {
 
         Object.entries(stateCount).slice(1).forEach(function(pair) {
           if (pair[1]) {
-            // debugger
             const countPair = document.createElement('li');
             countPair.innerHTML = `${pair[0]}: ${parse(pair[1]) * 1000} people`;
             countContainer.appendChild(countPair)
@@ -271,7 +206,6 @@ export function fetchAndRender(url1, url2, colors) {
       })
 
       stateDetails.classList.remove('hidden');
-      stateDetails.style.backgroundColor='lightgray';
       stateDetails.setAttribute('z-index', '5');
 
       clicked(event, state);

@@ -1,26 +1,57 @@
 #state-details {
   color: black;
-  background-color: rgba(207, 207, 207, 0.476);
+  background-color: #FCFAF6;
   position: absolute;
   z-index: 5;
-  width: 200px;
-  height: 450px;
-  top: 24%;
-  right: 26%;
+  width: 25%;
+  min-width: 200px;
+  min-height: 300px;
+  top: 30%;
+  right: 22%;
   border-radius: 14px;
-  border-bottom: 1px solid rgb(152, 152, 152);
-  border-right: 1px solid rgb(152, 152, 152);
-  opacity: 0.7;
-  font-size: 14px;
+  opacity: 0.85;
+  font-size: 16px;
   padding: 10px;
+  box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+
+  .close {
+    top: 10px;
+    right: 10px;
+  }
 }
 
 #count-details,
 #percent-details {
-  margin: 20px;
+  margin: 35px 20px;
 }
 
 #count-details li,
 #percent-details li {
   margin: 5px;
+
+  &:nth-child(2) {
+    font-weight: 200;
+    margin-top: 10px;
+    list-style: circle;
+  }
+
+  &:nth-child(3) {
+    list-style: circle;
+    font-weight: 200;
+  }
+
+  &:nth-child(4) {
+    list-style: circle;
+    font-weight: 200;
+  }
+
+  &:nth-child(5) {
+    list-style: circle;
+    font-weight: 200;
+  }
+
+  &:nth-child(6) {
+    list-style: circle;
+    font-weight: 200;
+  }
 }

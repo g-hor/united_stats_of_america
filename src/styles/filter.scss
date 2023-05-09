@@ -11,18 +11,20 @@ ul {
 li.selector {
   border: 0.2px solid gray;
   padding: 8px;
-  margin: 8px;
+  margin: 12px 8px;
   border-radius: 14px;
   cursor: pointer;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
-// li.selector:active {
-//   box-shadow: 2px 3px lightgray;
-// }
-
 li.selector:hover {
-  transform: scale(1.05);
-  background-color: rgb(128, 128, 128);
-  color: white;
-  outline: rgba(0, 0, 0, 0.191) solid 1px;
+  scale: 1.01;
+  outline: rgb(80, 80, 80) solid 1px;
 }
