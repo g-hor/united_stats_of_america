@@ -1,4 +1,5 @@
 import { calculateSD, parse } from "./data_parsers";
+import { createLegend } from "./legend";
 
 export function fetchAndRender(url1, url2, colors) {
   const deviationText = [
@@ -105,65 +106,10 @@ export function fetchAndRender(url1, url2, colors) {
       .attr('fill', 'none')
       .attr('stroke', 'white')
       .attr('stroke-linejoin', 'round')
-      .attr('d', path(topojson.mesh(mapData, mapData.objects.states, (a, b) => a !== b)))
+      .attr('d', path(topojson.mesh(mapData, mapData.objects.states, (a, b) => a !== b)));
 
-
-    // create color legend
-    const legend = d3.select('.legend');
-    let yAxis = 65;
-
-    // iterate through colors to create colored rectangle + associated text description
-    colors.forEach(function(color, idx) {
-      legend.append('rect')
-        .attr('x', '0')
-        .attr('y', `${yAxis}`)
-        .attr('width', '20')
-        .attr('height', '80')
-        .attr('fill', `${color}`)
-        .attr('id', `color-${idx}`)
-        .attr('idx', idx)
-        .attr('data-text', `${deviationText[idx]}`)
-
-      d3.select(`#color-${idx}`)
-        .append('text')
-        .attr('x', '23')
-        .attr('y', `${yAxis}`)
-        .attr('width', '200')
-        .attr('height', '80')
-        .text(`${deviationText[idx]}`)
-
-      d3.select(`#color-${idx}`)
-        .on('mouseover', (e) => {
-          const el = e.target;
-          const detail = el.dataset.text;
-          const idx = Number(el.getAttribute('idx'));
-          const legendDetail = document.getElementById("legend-detail");
-          const offsetLeft = document.querySelector('.map-container').offsetLeft;
-          const offsetTop = document.querySelector('.map-container').offsetTop;
-          const legendWidth = document.querySelector('.legend').width.baseVal.value;
-          
-          legendDetail.innerText = detail;
-          legendDetail.style.display = "block";
-          legendDetail.style.left = `${offsetLeft + legendWidth - 1}px`;
-          legendDetail.style.top = `${offsetTop + 65 + (80 * idx)}px`;
-          legendDetail.style.backgroundColor = color;
-
-          if (idx >= 0 && idx <= 1 || idx >= 4 && idx <= 5) {
-            legendDetail.style.color = 'white';
-          } else {
-            legendDetail.style.color = 'black';
-          }
-        })
-        .on('mouseout', () => {
-          const legendDetail = document.getElementById("legend-detail");
-          legendDetail.style.display = 'none';
-        });
-
-
-      yAxis += 80;
-    });
-
-
+    // make a color legend for the map
+    createLegend(colors);
     
     // zoom in on state when clicked
     function clicked(event, d) {
@@ -178,13 +124,13 @@ export function fetchAndRender(url1, url2, colors) {
           .translate(-(x0 + x1) / 2, -(y0 + y1) / 2),
         d3.pointer(event, svg.node())
       );
-    }
+    };
     
     function zoomed(event) {
       const {transform} = event;
       g.attr("transform", transform);
       g.attr("stroke-width", 1 / transform.k);
-    }
+    };
 
 
     // resets view back to default sizing/position
@@ -203,7 +149,7 @@ export function fetchAndRender(url1, url2, colors) {
         d3.zoomIdentity,
         d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
       );
-    }
+    };
 
     // makes modal with details for selected state
     function makeModal (event, state) {

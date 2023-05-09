@@ -193,7 +193,7 @@ img {
 
 .modal-content {
   background-color: #FCFAF6;
-  padding: 20px 35px;
+  padding: 20px 50px;
   border-radius: 14px;
   width: 30%;
   text-align: left;
@@ -262,7 +262,7 @@ img {
 }
 
 #info-content {
-  padding: 20px;
+  padding: 20px 50px;
 }
 #info-content ul li {
   padding: 10px 0;
