@@ -1,5 +1,5 @@
 body {
-    background-color: #FCFAF6;
+    background: linear-gradient(0deg, #F5F5F5, #FBFBFB, #F5F5F5);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,6 +26,7 @@ h1 {
 
 #title-e {
     font-size: 18px;
+    color: #666;
 }
 
 
