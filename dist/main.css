@@ -70,6 +70,7 @@ li.selector {
   margin: 12px 8px;
   border-radius: 14px;
   cursor: pointer;
+  background-color: white;
 }
 li.selector:first-child {
   margin-top: 0;
@@ -79,12 +80,16 @@ li.selector:last-child {
 }
 
 li.selector:hover {
-  scale: 1.01;
-  outline: rgb(80, 80, 80) solid 1px;
+  scale: 1.005;
+  outline: #999 solid 1px;
+}
+
+.selector.active {
+  outline: black solid 1px;
 }
 
 body {
-  background-color: #FCFAF6;
+  background: linear-gradient(0deg, #F5F5F5, #FBFBFB, #F5F5F5);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -111,6 +116,7 @@ h1 {
 
 #title-e {
   font-size: 18px;
+  color: #666;
 }
 
 h2 {
@@ -168,6 +174,7 @@ img {
 }
 
 .us-map {
+  background-color: white;
   border: 1px solid rgb(112, 112, 112);
   border-radius: 14px;
   width: 100%;

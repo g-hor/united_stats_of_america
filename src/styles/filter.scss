@@ -14,6 +14,7 @@ li.selector {
   margin: 12px 8px;
   border-radius: 14px;
   cursor: pointer;
+  background-color: white;
 
   &:first-child {
     margin-top: 0;
@@ -25,6 +26,10 @@ li.selector {
 }
 
 li.selector:hover {
-  scale: 1.01;
-  outline: rgb(80, 80, 80) solid 1px;
+  scale: 1.005;
+  outline: #999 solid 1px;
+}
+
+.selector.active {
+  outline: black solid 1px;
 }

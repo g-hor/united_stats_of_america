@@ -68,10 +68,30 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
+  // selection options logic
+  const selections = document.querySelectorAll('.selector');
+  const table27 = document.getElementById('table27');
+  const table28 = document.getElementById('table28');
+  const table29 = document.getElementById('table29');
+  const table30 = document.getElementById('table30');
+  const table31 = document.getElementById('table31');
+  const table32 = document.getElementById('table32');
+  const table33 = document.getElementById('table33');
+  const table7 = document.getElementById('table7');
+  const table11 = document.getElementById('table11');
+  const table12 = document.getElementById('table12');
+  const table22 = document.getElementById('table22');
+  const table2 = document.getElementById('table2');
+  const table23 = document.getElementById('table23');
+  const table26 = document.getElementById('table26');
+
 
   fetchAndRender("NSDUH_count/table27.csv", "NSDUH_percentages/table27.csv", ANY_ILLNESS);
+  table27.classList.add('active');
 
-  document.getElementById("table27").addEventListener("click", () => {
+  table27.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table27.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -81,7 +101,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table27.csv", "NSDUH_percentages/table27.csv", ANY_ILLNESS);
   })
 
-  document.getElementById("table28").addEventListener("click", () => {
+  table28.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table28.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -92,7 +114,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table28.csv", "NSDUH_percentages/table28.csv", SRS_ILLNESS);
   })
 
-  document.getElementById("table29").addEventListener("click", () => {
+  table29.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table29.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -103,7 +127,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table29.csv", "NSDUH_percentages/table29.csv", RECEIVED_SERV);
   })
 
-  document.getElementById("table30").addEventListener("click", () => {
+  table30.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table30.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -114,7 +140,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table30.csv", "NSDUH_percentages/table30.csv", DEPRESSION);
   })
 
-  document.getElementById("table31").addEventListener("click", () => {
+  table31.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table31.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -125,7 +153,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table31.csv", "NSDUH_percentages/table31.csv", THOUGHTS);
   })
 
-  document.getElementById("table32").addEventListener("click", () => {
+  table32.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table32.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -136,7 +166,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table32.csv", "NSDUH_percentages/table32.csv", PLANS);
   })
 
-  document.getElementById("table33").addEventListener("click", () => {
+  table33.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table33.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -147,7 +179,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table33.csv", "NSDUH_percentages/table33.csv", ATTEMPTED);
   })
 
-  document.getElementById("table7").addEventListener("click", () => {
+  table7.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table7.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -158,7 +192,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table7.csv", "NSDUH_percentages/table7.csv", COCAINE);
   })
 
-  document.getElementById("table11").addEventListener("click", () => {
+  table11.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table11.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -169,7 +205,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table11.csv", "NSDUH_percentages/table11.csv", METH);
   })
 
-  document.getElementById("table12").addEventListener("click", () => {
+  table12.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table12.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -180,7 +218,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table12.csv", "NSDUH_percentages/table12.csv", PAIN_RELIEF);
   })
 
-  document.getElementById("table22").addEventListener("click", () => {
+  table22.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table22.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -191,7 +231,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table22.csv", "NSDUH_percentages/table22.csv", ALCOHOL);
   })
   
-  document.getElementById("table2").addEventListener("click", () => {
+  table2.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table2.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -202,7 +244,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table2.csv", "NSDUH_percentages/table2.csv", WEED_USE);
   })
 
-  document.getElementById("table23").addEventListener("click", () => {
+  table23.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table23.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
@@ -213,7 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
     fetchAndRender("NSDUH_count/table23.csv", "NSDUH_percentages/table23.csv", SUBSTANCE_USE);
   })
 
-  document.getElementById("table26").addEventListener("click", () => {
+  table26.addEventListener("click", () => {
+    selections.forEach(selection => selection.classList.remove('active'));
+    table26.classList.add('active');
     countContainer.innerHTML = '';
     centContainer.innerHTML = '';
     stateDetails.classList.add('hidden');
